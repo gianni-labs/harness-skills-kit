@@ -15,9 +15,9 @@
  sketch, architectural notebook style".
 ══════════════════════════════════════════════════════════════════════════════
 -->
-<!-- ![Spec-Design Harness](docs/assets/hero.png) -->
-
 <div align="center">
+
+<img src="docs/assets/hero.png" alt="Spec-Design Harness" width="100%">
 
 # 🧭 Spec-Design Harness
 
@@ -71,9 +71,9 @@ A diferencia de otras herramientas spec-driven, este harness aporta cuatro cosas
   light watercolor fills, arrows connecting labeled boxes".
 ══════════════════════════════════════════════════════════════════════════════
 -->
-<!-- ![El pipeline](docs/assets/pipeline.png) -->
-
 ## 🌟 El pipeline
+
+<p align="center"><img src="docs/assets/pipeline.png" alt="El pipeline de fases" width="820"></p>
 
 ```
 /iniciar-harness → 💡 idea
@@ -116,9 +116,9 @@ A diferencia de otras herramientas spec-driven, este harness aporta cuatro cosas
   off-white, fine linework, soft shadows, no text. 4:3, premium, high detail."
 ══════════════════════════════════════════════════════════════════════════════
 -->
-<!-- ![Separación por altitudes](docs/assets/altitudes.png) -->
-
 ## 🧭 Cómo funciona
+
+<p align="center"><img src="docs/assets/altitudes.png" alt="Separación por altitudes" width="680"></p>
 
 El principio rector es la **separación por altitud**: cada decisión vive en una sola fase, y los cambios fluyen *top-down*. Una decisión cerrada nunca se reabre desde una fase posterior — se vuelve a la fase dueña. Así el código no erosiona el diseño, y el diseño no contamina el requerimiento.
 
@@ -192,9 +192,9 @@ En cada fase de diseño, la skill te deja un archivo `preguntas-*.md`. Lo respon
   for captions, no readable text. 16:9, premium, high detail."
 ══════════════════════════════════════════════════════════════════════════════
 -->
-<!-- ![Ciclo de mejoras post-MVP](docs/assets/ciclo-mejoras.png) -->
-
 ## ♻️ Después del MVP: mejoras con rigor adaptativo
+
+<p align="center"><img src="docs/assets/ciclo-mejoras.png" alt="Ciclo de mejoras post-MVP" width="820"></p>
 
 El primer release construye el MVP; lo que queda fuera vive en `BACKLOG.md`. El skill `/mejora` toma un ítem y elige **cuánto harness aplicar según el impacto del cambio**:
 
