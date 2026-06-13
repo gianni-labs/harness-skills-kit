@@ -300,9 +300,7 @@ Listo para especificación técnica y plan:
 - ADRs pendientes que fases posteriores deben respetar como abiertas: ADR-N
 ```
 
-Ofrecer al usuario:
-- Borrar `preguntas-diseno.md` (integrado).
-- Continuar con `/wireframes` (o directamente `/especificacion-tecnica` si el proyecto no tiene UI).
+**Archivar** `preguntas-diseno.md` (integrado) en `02-diseno/_archivo/` — automático, según `CONVENCIONES.md` §5, sin preguntar. Luego ofrecer continuar con `/wireframes` (o directamente `/especificacion-tecnica` si el proyecto no tiene UI).
 
 ---
 

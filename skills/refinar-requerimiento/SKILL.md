@@ -144,12 +144,8 @@ Varias respuestas del usuario tienden a ser "esto déjalo para después". Esto g
 Al terminar el merge y las preguntas de seguimiento:
 
 1. Actualizar `documentacion/INDICE.md`: fase 1 → ✅ (y registrar el perfil del proyecto si se capturó aquí).
-2. Ofrecer al usuario:
-   - Borrar `preguntas.md` (ya está integrado).
-   - Borrar el original y renombrar `<nombre>-v2.md` → `<nombre>.md`.
-   - Pasar al documento de diseño (`/documento-diseno`).
-
-No hacer nada de esto sin confirmación.
+2. **Archivar los intermedios automáticamente** (`CONVENCIONES.md` §5): mover a `01-requerimiento/_archivo/` el `preguntas.md` (ya integrado) y el documento de entrada que quedó reemplazado (si se trabajó con `-v2`); renombrar `<nombre>-v2.md` → `<nombre>.md` como artefacto vivo de la fase. Sin preguntar — es la convención.
+3. Ofrecer pasar al documento de diseño (`/documento-diseno`). Avanzar de fase sí es decisión del usuario.
 
 ---
 

@@ -20,8 +20,8 @@ El harness usa **siempre** esta estructura, creada por `/iniciar-harness`. No es
     ├── 02-diseno/                     ← diseno.md [+ diseno-tecnico.md] + preguntas-diseno.md
     ├── 03-wireframes/                 ← wireframes.md + preguntas-wireframes.md (omitida si no hay UI)
     ├── 04-especificacion-tecnica/     ← especificacion-tecnica.md + preguntas-especificacion.md
-    ├── 05-desarrollo/                 ← plan.md + seguimiento.md + bitacora.md + herramientas-recomendadas.md
-    └── mejoras/                       ← una carpeta <id>-<slug>/ por mejora post-MVP
+    ├── 05-desarrollo/                 ← plan.md + seguimiento.md + bitacora.md
+    └── mejoras/                       ← INDICE.md + una carpeta <id>-<slug>/ por mejora post-MVP
 ```
 
 ## 2. Pipeline y fases
@@ -47,6 +47,8 @@ El harness usa **siempre** esta estructura, creada por `/iniciar-harness`. No es
 | `MEJ-{nn}` | Ítem del backlog que no es RF (deuda técnica, mejora) | `BACKLOG.md` |
 
 La numeración es **global y continua** dentro de cada tipo; las mejoras post-MVP **continúan** la numeración del MVP (no reinician en RF-1).
+
+**Tareas en planes de mejora:** el `plan.md` de una mejora usa el **mismo formato `F{n}-T{m}`** que el MVP (no `T-01` ni otras variantes), con su propia numeración dentro del plan de la mejora; en la bitácora se referencian con el ID de la mejora como origen (ej. `Origen: MEJ-04 F1-T2`).
 
 ## 4. Estados (vocabulario único)
 
@@ -97,6 +99,8 @@ R:
 
 **Merge:** cuando el usuario responde, la skill clasifica cada respuesta (integración directa / deseable post-MVP / fuera de scope / pendiente), la integra **reformulada en el tono del documento** (no copia literal), limpia la sección de pendientes, y conserva el archivo de preguntas como registro hasta el cierre de la fase. Respuestas que abren hilos nuevos → máximo 3–4 preguntas de seguimiento en el chat.
 
+**Archivado al cerrar (automático, sin preguntar):** al cerrar la fase, los **archivos intermedios** —el `preguntas-*.md` ya respondido y mergeado, y el documento de entrada que quedó reemplazado por una versión `-vN` o por el artefacto final— se **mueven** a un subdirectorio `_archivo/` dentro de la carpeta de la fase (ej. `02-diseno/_archivo/preguntas-diseno.md`). Default conservador: **archivar, no borrar** (quedan como historial, fuera del camino). La skill **no pregunta** al usuario qué hacer con ellos — aplica esta convención. El artefacto vivo de la fase (el documento final) permanece en su lugar. Avanzar a la siguiente fase sí sigue siendo decisión del usuario (se ofrece, no se encadena solo).
+
 ## 6. Gate de aprobación humano ≠ AskUserQuestion
 
 Dos mecanismos distintos; confundirlos es un anti-patrón:
@@ -108,13 +112,18 @@ Dos mecanismos distintos; confundirlos es un anti-patrón:
 
 En proyectos con UI, `DESIGN.md` en la raíz del repo codifica la identidad visual real (colores, tipografía, espaciado, patrones de componentes), en el formato abierto de Google Stitch. Se genera **leyendo el codebase, nunca inventando valores**. Se crea/verifica al iniciar la primera mejora visual (track B de `/mejora`) y se actualiza al cerrar cualquier mejora que cambie tokens o patrones. Opcionalmente se genera al cerrar el MVP.
 
+**Expectativa visual del MVP:** la UI del MVP es **base funcional y limpia, no identidad de marca** — es una decisión, no un límite. El pulido visual (tipografía distintiva, paleta propia, micro-interacciones) es un **track B post-MVP** que usa `DESIGN.md` para subir el nivel sin rehacer. Comunicarlo así al usuario para que la simpleza inicial se lea como etapa, no como carencia.
+
 ## 8. Perfil del proyecto
 
 Lo captura `/iniciar-harness` (o `refinar-requerimiento`, si el proyecto arrancó sin init) y queda registrado al inicio del requerimiento cerrado:
 
 ```markdown
 **Perfil del proyecto:** UI: sí/no · LLM: sí/no · API/backend: sí/no · [otras capacidades relevantes]
+**Git:** respaldo local en gates: sí/no  (si sí: `git commit` local al cerrar cada fase, acotado a `documentacion/`, sin remoto ni push)
 ```
+
+La **política de git** es opt-in (se elige en `/iniciar-harness`); si está activa, los cierres de fase de `desarrollo` hacen un commit **local** de la documentación. El harness **nunca** crea repos remotos, configura remotos ni hace `push` — eso es del usuario.
 
 Las skills lo consumen:
 - `wireframes` — se **omite** si UI: no.

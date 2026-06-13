@@ -207,9 +207,7 @@ Al terminar, generar un resumen en el chat:
 Listo para: plan de implementación / código.
 ```
 
-Ofrecer:
-- Borrar `preguntas-wireframes.md` (integrado).
-- Actualizar `INDICE.md` con el estado de la fase 3.
+**Archivar** `preguntas-wireframes.md` (integrado) en `03-wireframes/_archivo/` — automático, según `CONVENCIONES.md` §5, sin preguntar. Actualizar `INDICE.md` con el estado de la fase 3.
 
 ---
 

@@ -170,7 +170,7 @@ Listo para el plan de implementación:
 - El plan secuencia tareas contra estos contratos (sin redefinirlos).
 ```
 
-Ofrecer: actualizar `INDICE.md` y continuar con el plan de implementación.
+**Archivar** `preguntas-especificacion.md` (si se generó, ya integrado) en `04-especificacion-tecnica/_archivo/` — automático, según `CONVENCIONES.md` §5. Actualizar `INDICE.md` y ofrecer continuar con el plan de implementación.
 
 ---
 

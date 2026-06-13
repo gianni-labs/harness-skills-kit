@@ -33,7 +33,7 @@ Convierte los contratos de la especificación técnica en un **plan ejecutable, 
 1. Lee la spec + alcance MVP + ADRs (en un release v2+, lee también `BACKLOG.md`).
 2. Produce en `documentacion/05-desarrollo/`:
    - `plan.md` — estructura **Fases → Tareas**.
-   - **inicializa** (con semilla/plantilla) `seguimiento.md`, `bitacora.md`, `herramientas-recomendadas.md`.
+   - **inicializa** (con semilla/plantilla) `seguimiento.md`, `bitacora.md`.
 3. **Inicializa/actualiza `documentacion/BACKLOG.md`** (cola viva del producto): registra todo el alcance que el release **deja fuera** (RFs Should/Could/Won't, deuda técnica de los ADRs, insumos pendientes). Esto evita que el alcance no planificado se "pierda". No duplica los requerimientos: **referencia** los RFs en `diseno.md`.
 4. (Si hay ambigüedades de secuenciación) `preguntas-plan.md`.
 5. Actualiza `INDICE.md`.
@@ -88,12 +88,13 @@ No empezar sin confirmación.
 - **Depende de:** F{n}-T{k} (o "—").
 - **Cubre:** RF-N / endpoint / vista.
 - **Criterio de done:** condición verificable y concreta.
-- [ ] Hecho
 ```
+
+> **Estado de la tarea:** vive en `seguimiento.md`, **no** en el plan — el plan es la *definición* de qué hacer, no el tracker (evita el doble estado y que el plan quede contradiciendo al seguimiento). **Excepción:** en **modo mejora (scoped)**, donde no se crea `seguimiento.md`, el plan de la mejora sí marca el avance por tarea con `- [ ] / - [x]`.
 
 ### Gate de cierre de fase (texto fijo por fase)
 
-> Al cerrar la fase: ejecutar verificación (lint/build + `verify`/`run`), actualizar `seguimiento.md`, anotar en `bitacora.md` lo notable, y consultar `herramientas-recomendadas.md` para la fase siguiente.
+> Al cerrar la fase: ejecutar verificación (lint/build + `verify`/`run`), actualizar `seguimiento.md`, anotar en `bitacora.md` lo notable, y considerar herramientas opcionales del entorno útiles para la fase siguiente.
 
 ### Reglas
 
@@ -107,9 +108,8 @@ No empezar sin confirmación.
 
 Los archivos de control **se copian desde las plantillas del kit** (`_harness/templates/` del harness) y se rellenan los placeholders (`{proyecto}`, `{fecha}`, fases del plan). No re-escribir las plantillas desde cero — son parte del contrato del kit:
 
-- **`seguimiento.md`** — plantilla `templates/seguimiento.md`. Rellenar la tabla con las fases reales del plan.
+- **`seguimiento.md`** — plantilla `templates/seguimiento.md`. Rellenar la tabla con las fases reales del plan. **La barra de progreso ASCII + % es un elemento fijo y minimalista** (siempre presente); `desarrollo` la recalcula en cada actualización.
 - **`bitacora.md`** — plantilla `templates/bitacora.md` (append-only, registro vivo con referencia cruzada `B-{nnn}` + Origen/Refs/Por; ver `CONVENCIONES.md` §3). El skill `desarrollo` sigue ese formato al añadir entradas.
-- **`herramientas-recomendadas.md`** — plantilla `templates/herramientas-recomendadas.md`. Ajustar la columna de fases sugeridas al plan real; todas las herramientas son **opcionales según el entorno**.
 - **`BACKLOG.md`** (en la raíz de `documentacion/`) — plantilla `templates/BACKLOG.md`, si `/iniciar-harness` no lo creó ya. Se crea en la primera corrida (MVP) capturando el alcance diferido y se actualiza en cada release. **No redefine** requerimientos: referencia los RFs de `diseno.md` y les sigue el estado (vocabulario único de estados: `CONVENCIONES.md` §4).
 
 ### Reglas para `preguntas-plan.md` (solo si hace falta)
@@ -139,11 +139,13 @@ Resumen en el chat:
 - Fases: F0..FN
 - Tareas: M (todas trazadas a RF/endpoint)
 - Cobertura: RF-1..RF-K (sin huecos)
-- Archivos de control inicializados: seguimiento.md, bitacora.md, herramientas-recomendadas.md
+- Archivos de control inicializados: seguimiento.md, bitacora.md
 - BACKLOG.md: alcance diferido registrado (RF Should/Could/Won't + deuda técnica + insumos)
 
 Listo para: skill `desarrollo` (ejecuta el plan tarea por tarea).
 ```
+
+**Archivar** `preguntas-plan.md` (si se generó, ya integrado) en `05-desarrollo/_archivo/` — automático, según `CONVENCIONES.md` §5.
 
 ---
 
@@ -153,8 +155,8 @@ Cuando este skill se invoca dentro del **track de mejoras post-MVP** (orquestado
 
 - **Escribe en** `documentacion/mejoras/<id>-<slug>/plan.md`, **no** en `05-desarrollo/`.
 - **Insumo = los documentos de la mejora** (su `diseno.md`/`especificacion-tecnica.md` si el track los generó) + el baseline del MVP como referencia. En **Track A** (deuda técnica/toggle) el insumo puede ser directamente la fila del backlog + el ADR/contrato existente que referencia.
-- El plan suele ser de **una sola fase** con pocas tareas atómicas; mantienen el formato (objetivo · archivos/contratos · depende de · cubre · criterio de done · checkbox) y la trazabilidad al ítem del backlog.
-- **No se replican** los 3 archivos de control del MVP: el seguimiento de una mejora se lleva con los checkboxes de su propio `plan.md`; la memoria va al `bitacora.md` global (Origen = ID de la mejora).
+- El plan suele ser de **una sola fase** con pocas tareas atómicas; mantienen el formato (objetivo · archivos/contratos · depende de · cubre · criterio de done · checkbox), los **IDs de tarea `F{n}-T{m}`** (misma convención que el MVP, no `T-01` ni variantes) y la trazabilidad al ítem del backlog.
+- **No se replican** los archivos de control del MVP: el seguimiento de una mejora se lleva con los checkboxes de su propio `plan.md`; la memoria va al `bitacora.md` global (Origen = ID de la mejora).
 
 ---
 
@@ -188,7 +190,7 @@ Resistir: aquí se define qué/orden, no el cómo del código.
 - [ ] Toda tarea es atómica, trazable a la spec y tiene criterio de done.
 - [ ] Matriz de cobertura: todo RF Must aparece en ≥1 tarea.
 - [ ] F0 (scaffolding/contratos base) precede a las features.
-- [ ] `seguimiento.md`, `bitacora.md` y `herramientas-recomendadas.md` inicializados con su formato.
+- [ ] `seguimiento.md` y `bitacora.md` inicializados con su formato.
 - [ ] `BACKLOG.md` creado/actualizado con el alcance diferido (nada de scope "perdido").
 - [ ] No hay código, ni contratos reabiertos, ni estimaciones.
 

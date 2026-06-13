@@ -58,6 +58,8 @@ El detalle vive en `CONVENCIONES.md`; lo esencial:
 - **IDs estables:** `RF-N`, `RNF-N`, `F-N` (flujo), `V-N` (vista), `ADR-N`, `F{n}-T{m}` (tarea), `B-{nnn}` (bitácora), `MEJ-{nn}` (ítem no-RF del backlog).
 - **Estados (vocabulario único):** `⬜ → 🔵 → 📝 → 🟡 → ✅` (+ `⛔`). El paso 📝→🟡 es el gate de OK del usuario.
 - **Patrón preguntas → merge:** cada fase de diseño produce un `preguntas-*.md` con bloques temáticos, numeración global, contexto y campo `R:`. El usuario responde; el skill hace *merge* al documento y conserva el archivo de preguntas como registro.
+- **Archivado automático:** al cerrar una fase, los intermedios (`preguntas-*.md` respondido, entrada reemplazada) se mueven solos a un `_archivo/` en la carpeta de la fase — sin preguntar.
+- **Git opt-in y local:** respaldo versionado de la documentación si el usuario lo activa en el onboarding; commit local en los gates, nunca remoto ni push.
 - **AskUserQuestion** solo para forks reales de decisión; un **gate de aprobación** ("dame el OK") es una parada, no un menú — nunca usa AskUserQuestion.
 - **Fase 0 y modo directo:** cada skill confirma fuentes antes de empezar, salvo cuando la invoca el orquestador `mejora` o el usuario pasa `directo`.
 - **Estados de cierre:** cada fase se marca ✅ en `documentacion/INDICE.md`.
@@ -72,7 +74,8 @@ En `documentacion/05-desarrollo/`, inicializados por `plan-implementacion` desde
 - **`plan.md`** — Fases → Tareas (atómicas, trazadas a RF/endpoint, con criterio de done).
 - **`seguimiento.md`** — estado del avance (barra + tabla fase/tareas). Minimalista.
 - **`bitacora.md`** — memoria **del proyecto**: decisiones/issues/aprendizajes con referencia cruzada (`B-nnn`, Origen, Refs, Por).
-- **`herramientas-recomendadas.md`** — menú de herramientas sugeridas por fase (opcionales; el usuario aprueba).
+
+> Las herramientas opcionales del entorno (`code-review`, `verify`, etc.) se sugieren en los gates de `desarrollo`, no en un archivo de control aparte.
 
 ---
 
@@ -129,6 +132,7 @@ ITERACIÓN:       BACKLOG.md → /mejora <id> → [clasificar impacto] → track
 - `desarrollo` **no re-planifica ni re-decide**; si un contrato cambia, vuelve a la fase dueña.
 - `mejora` **no codifica ni reabre los docs del MVP**; clasifica el impacto y aplica el rigor proporcional.
 - `iniciar-harness` **no escribe contenido de fases** (solo estructura y plantillas) y **no pisa nada existente** sin avisar.
+- **Git es opt-in y local:** si el usuario lo activa, el harness hace `git commit` local de la documentación en los gates; **nunca** crea repos remotos ni hace `push` (el remoto y el deploy son del usuario).
 - Todas: **preguntar, no inventar**.
 
 ---

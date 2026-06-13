@@ -11,8 +11,7 @@ Sexta fase de la metodología Spec-Design, segunda mitad de la **construcción**
 … → 5 plan-implementacion → 6 desarrollo (este skill) ──► código
                                 │
                                 ├─ mantiene  seguimiento.md          (estado)
-                                ├─ alimenta  bitacora.md             (memoria: decisiones/issues/aprendizajes)
-                                └─ consulta  herramientas-recomendadas.md (sugiere tools por fase — modo activo)
+                                └─ alimenta  bitacora.md             (memoria: decisiones/issues/aprendizajes)
 ```
 
 Construye el proyecto **contra los contratos ya cerrados**, de forma ordenada (una tarea a la vez), verificable y con memoria. No diseña ni re-decide: implementa lo que la cadena de fases ya definió.
@@ -23,7 +22,7 @@ Construye el proyecto **contra los contratos ya cerrados**, de forma ordenada (u
 
 - **`05-desarrollo/plan.md`** — fases y tareas a ejecutar (con dependencias y criterios de done).
 - **`especificacion-tecnica.md`** — contratos exactos (tipos, JSON Schema, endpoints, módulos, contrato LLM, errores). **Fuente de verdad del código.**
-- **Archivos de control:** `seguimiento.md`, `bitacora.md`, `herramientas-recomendadas.md`.
+- **Archivos de control:** `seguimiento.md`, `bitacora.md`.
 - **`BACKLOG.md`** (raíz de `documentacion/`) — cola viva del producto. No se ejecuta desde aquí, pero es el destino de cualquier alcance que quede fuera del release en curso (ver "Alcance que aparece fuera del release").
 - Si hace falta, consulta hacia atrás `diseno.md` / `diseno-tecnico.md` / `wireframes.md`, pero **no los modifica**.
 
@@ -75,7 +74,8 @@ Al terminar todas las tareas de una fase:
 2. **Verify:** correr la app / pruebas relevantes con `verify` o `run` — o ejecutarlas manualmente.
 3. **Actualizar** `seguimiento.md` (fase → ✅, progreso global).
 4. **Bitácora:** resumen breve de la fase (qué quedó, qué aprendiste).
-5. **Herramientas (modo activo):** consultar `herramientas-recomendadas.md` y **proponer al usuario** instalar las sugeridas para la **fase siguiente** (explicando para qué). El usuario aprueba; actualizar el estado en el archivo (sugerida → instalada/descartada).
+5. **Herramientas (opcionales):** considerar si alguna herramienta del entorno (las del recuadro de arriba, u otras según el stack) ayuda en la **fase siguiente** y proponérsela al usuario, explicando para qué. El usuario decide; no se instala nada sin su OK.
+6. **Respaldo git (si la política del proyecto lo activó):** `git commit` **local** de la documentación actualizada, con mensaje estándar (ej. `harness: cierre fase X`). **Local, nunca `push` ni remoto.** Si la política es "no tocar git", omitir este paso.
 
 No avanzar a la siguiente fase sin cerrar el gate.
 
@@ -89,7 +89,7 @@ Al terminar **todas las fases** del plan (el release queda construido):
 2. **Actualizar `BACKLOG.md`:** subir el release a ✅ en la tabla de Releases. Si alguna funcionalidad del backlog se implementó en este release, marcarla ✅.
 3. **Actualizar `INDICE.md`:** reflejar que el release está construido (no dejar "no iniciado" cuando ya está hecho).
 4. Confirmar que el alcance diferido sigue visible en `BACKLOG.md` para el próximo ciclo (nada se "pierde" al cerrar el MVP).
-5. *(Opcional, si el proyecto tiene UI)* **Proponer generar `DESIGN.md`** en la raíz del repo (formato Google Stitch, leyendo el codebase — ver `CONVENCIONES.md` §7): deja documentado el sistema de diseño para futuras mejoras visuales. Si el usuario declina, el track B de `/mejora` lo generará cuando haga falta.
+5. *(Opcional, si el proyecto tiene UI)* **Encuadre visual + `DESIGN.md`:** dejar claro que la UI del MVP es **base funcional, no identidad de marca** (decisión, no límite; ver `CONVENCIONES.md` §7). Proponer generar `DESIGN.md` en la raíz (formato Google Stitch, leyendo el codebase) como punto de partida del **pulido visual en un track B** post-MVP. Si el usuario declina, el track B de `/mejora` lo generará cuando haga falta.
 
 ---
 
