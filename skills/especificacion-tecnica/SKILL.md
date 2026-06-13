@@ -5,7 +5,7 @@ description: 'Toma un diseño cerrado (funcional + técnico) y los wireframes (s
 
 # especificacion-tecnica
 
-Cuarta fase de la metodología Spec-Design, capa de **contratos exactos** (convenciones compartidas: `CONVENCIONES.md` del harness):
+Cuarta fase de la metodología Spec-Design, capa de **contratos exactos** (convenciones compartidas: `documentacion/CONVENCIONES.md` del harness):
 
 ```
 [requerimiento]  →  2 documento-diseno  →  [diseño funcional + técnico]
@@ -72,7 +72,7 @@ Confirmar **en un solo mensaje breve**:
 
 No empezar sin confirmación.
 
-> **Modo directo** (`CONVENCIONES.md` §9): si la skill fue invocada por el orquestador `mejora` o el usuario pasó `directo`, anunciar fuentes y defaults en un mensaje y proceder sin esperar confirmación.
+> **Modo directo** (`documentacion/CONVENCIONES.md` §9): si la skill fue invocada por el orquestador `mejora` o el usuario pasó `directo`, anunciar fuentes y defaults en un mensaje y proceder sin esperar confirmación.
 
 ---
 
@@ -137,7 +137,7 @@ Secciones **núcleo** (siempre) + secciones **condicionales** según el perfil d
 
 ### Reglas para `preguntas-especificacion.md`
 
-Formato canónico en **`CONVENCIONES.md` §5**. Deltas de esta fase:
+Formato canónico en **`documentacion/CONVENCIONES.md` §5**. Deltas de esta fase:
 
 - Solo lo que **bloquea precisión** del contrato (no preferencias cosméticas).
 - Máximo ~10 preguntas.
@@ -170,7 +170,7 @@ Listo para el plan de implementación:
 - El plan secuencia tareas contra estos contratos (sin redefinirlos).
 ```
 
-**Archivar** `preguntas-especificacion.md` (si se generó, ya integrado) en `04-especificacion-tecnica/_archivo/` — automático, según `CONVENCIONES.md` §5. Actualizar `INDICE.md` y ofrecer continuar con el plan de implementación.
+**Archivar** `preguntas-especificacion.md` (si se generó, ya integrado) en `04-especificacion-tecnica/_archivo/` — automático, según `documentacion/CONVENCIONES.md` §5. Actualizar `INDICE.md` y ofrecer continuar con el plan de implementación.
 
 ---
 

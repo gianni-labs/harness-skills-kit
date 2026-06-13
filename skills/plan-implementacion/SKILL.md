@@ -5,7 +5,7 @@ description: 'Toma una especificación técnica cerrada (contratos: tipos, schem
 
 # plan-implementacion
 
-Quinta fase de la metodología Spec-Design, primera mitad de la **construcción** (convenciones compartidas: `CONVENCIONES.md` del harness):
+Quinta fase de la metodología Spec-Design, primera mitad de la **construcción** (convenciones compartidas: `documentacion/CONVENCIONES.md` del harness):
 
 ```
 … → 4 especificacion-tecnica → 5 plan-implementacion (este skill) → 6 desarrollo → código
@@ -59,7 +59,7 @@ Confirmar **en un solo mensaje breve**:
 
 No empezar sin confirmación.
 
-> **Modo directo** (`CONVENCIONES.md` §9): si la skill fue invocada por el orquestador `mejora` o el usuario pasó `directo`, anunciar fuentes y defaults en un mensaje y proceder sin esperar confirmación.
+> **Modo directo** (`documentacion/CONVENCIONES.md` §9): si la skill fue invocada por el orquestador `mejora` o el usuario pasó `directo`, anunciar fuentes y defaults en un mensaje y proceder sin esperar confirmación.
 
 ---
 
@@ -106,15 +106,15 @@ No empezar sin confirmación.
 
 ### Inicialización de los archivos de control
 
-Los archivos de control **se copian desde las plantillas del kit** (`_harness/templates/` del harness) y se rellenan los placeholders (`{proyecto}`, `{fecha}`, fases del plan). No re-escribir las plantillas desde cero — son parte del contrato del kit:
+Los archivos de control **se copian desde las plantillas del kit** (`${CLAUDE_PLUGIN_ROOT}/skills/_harness/templates/`) y se rellenan los placeholders (`{proyecto}`, `{fecha}`, fases del plan). No re-escribir las plantillas desde cero — son parte del contrato del kit:
 
-- **`seguimiento.md`** — plantilla `templates/seguimiento.md`. Rellenar la tabla con las fases reales del plan. **La barra de progreso ASCII + % es un elemento fijo y minimalista** (siempre presente); `desarrollo` la recalcula en cada actualización.
-- **`bitacora.md`** — plantilla `templates/bitacora.md` (append-only, registro vivo con referencia cruzada `B-{nnn}` + Origen/Refs/Por; ver `CONVENCIONES.md` §3). El skill `desarrollo` sigue ese formato al añadir entradas.
-- **`BACKLOG.md`** (en la raíz de `documentacion/`) — plantilla `templates/BACKLOG.md`, si `/iniciar-harness` no lo creó ya. Se crea en la primera corrida (MVP) capturando el alcance diferido y se actualiza en cada release. **No redefine** requerimientos: referencia los RFs de `diseno.md` y les sigue el estado (vocabulario único de estados: `CONVENCIONES.md` §4).
+- **`seguimiento.md`** — plantilla `${CLAUDE_PLUGIN_ROOT}/skills/_harness/templates/seguimiento.md`. Rellenar la tabla con las fases reales del plan. **La barra de progreso ASCII + % es un elemento fijo y minimalista** (siempre presente); `desarrollo` la recalcula en cada actualización.
+- **`bitacora.md`** — plantilla `${CLAUDE_PLUGIN_ROOT}/skills/_harness/templates/bitacora.md` (append-only, registro vivo con referencia cruzada `B-{nnn}` + Origen/Refs/Por; ver `documentacion/CONVENCIONES.md` §3). El skill `desarrollo` sigue ese formato al añadir entradas.
+- **`BACKLOG.md`** (en la raíz de `documentacion/`) — plantilla `${CLAUDE_PLUGIN_ROOT}/skills/_harness/templates/BACKLOG.md`, si `/iniciar-harness` no lo creó ya. Se crea en la primera corrida (MVP) capturando el alcance diferido y se actualiza en cada release. **No redefine** requerimientos: referencia los RFs de `diseno.md` y les sigue el estado (vocabulario único de estados: `documentacion/CONVENCIONES.md` §4).
 
 ### Reglas para `preguntas-plan.md` (solo si hace falta)
 
-Formato canónico en **`CONVENCIONES.md` §5**. Deltas de esta fase:
+Formato canónico en **`documentacion/CONVENCIONES.md` §5**. Deltas de esta fase:
 
 - Únicamente ambigüedades de **secuenciación o granularidad** que bloqueen el plan.
 - Máximo ~8 preguntas.
@@ -145,7 +145,7 @@ Resumen en el chat:
 Listo para: skill `desarrollo` (ejecuta el plan tarea por tarea).
 ```
 
-**Archivar** `preguntas-plan.md` (si se generó, ya integrado) en `05-desarrollo/_archivo/` — automático, según `CONVENCIONES.md` §5.
+**Archivar** `preguntas-plan.md` (si se generó, ya integrado) en `05-desarrollo/_archivo/` — automático, según `documentacion/CONVENCIONES.md` §5.
 
 ---
 

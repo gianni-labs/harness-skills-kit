@@ -1,0 +1,12 @@
+{
+  "name": "spec-design",
+  "version": "0.1.0",
+  "description": "Harness de desarrollo asistido por IA (metodología Spec-Design): cadena de skills de la idea cruda al código, con contratos fijos entre fases. Pregunta en vez de inventar; ciclo post-MVP con rigor adaptativo.",
+  "author": {
+    "name": "Gianni Carvacho",
+    "url": "https://github.com/gianni-labs"
+  },
+  "homepage": "https://github.com/gianni-labs/harness-skills-kit",
+  "license": "MIT",
+  "keywords": ["spec-driven", "spec-design", "workflow", "skills", "harness", "español"]
+}

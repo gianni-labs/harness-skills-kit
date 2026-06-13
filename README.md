@@ -128,24 +128,22 @@ Cada skill comparte un esqueleto disciplinado: declara **qué consume** y **qué
 
 ## ⚡ Instalación
 
-> **Estado:** el harness es funcional y usable hoy. El empaquetado como **plugin de Claude Code** (marketplace de un comando) está en progreso — abajo están ambos métodos.
-
-### Opción A — Como plugin *(recomendado, próximamente)*
+### Opción A — Como plugin *(recomendado)*
 
 ```bash
-# 1. Agregar este repo como marketplace
-/plugin marketplace add GianniCarvacho-Prsnl/harness-skills-kit
+# 1. Agregar el marketplace de gianni-labs
+/plugin marketplace add gianni-labs/harness-skills-kit
 
 # 2. Instalar el harness
-/plugin install spec-design@harness-skills-kit
+/plugin install spec-design@gianni-labs
 ```
 
-### Opción B — Instalación manual *(funciona hoy)*
+### Opción B — Instalación manual
 
 Copia las skills a tu proyecto (o a `~/.claude/skills/` para uso global):
 
 ```bash
-git clone https://github.com/GianniCarvacho-Prsnl/harness-skills-kit.git
+git clone https://github.com/gianni-labs/harness-skills-kit.git
 cp -R harness-skills-kit/skills/. tu-proyecto/.claude/skills/
 ```
 
@@ -240,9 +238,9 @@ docs/MANUAL.md                    ← manual del harness (el porqué de cada dec
 - [x] Las 8 skills, genéricas y desacopladas de cualquier dominio
 - [x] Convenciones y plantillas centralizadas
 - [x] Skill de arranque (`iniciar-harness`)
-- [ ] Empaquetado como plugin de Claude Code (`.claude-plugin/marketplace.json`)
+- [x] Empaquetado como plugin de Claude Code (`.claude-plugin/marketplace.json`)
+- [x] Archivo `LICENSE` (MIT)
 - [ ] Proyecto de ejemplo + artefactos dorados (demo end-to-end)
-- [ ] Archivo `LICENSE`
 
 ## 🤝 Contribuir
 
@@ -250,7 +248,7 @@ Las propuestas de mejora al harness se discuten en *issues*. Si usas el kit en u
 
 ## 📄 Licencia
 
-Por definir (candidata: MIT). Ver el roadmap.
+MIT — ver [`LICENSE`](LICENSE).
 
 <!--
 NOTA DE MANTENIMIENTO (no publicar / borrar antes de hacer público si se prefiere):

@@ -1,0 +1,15 @@
+{
+  "name": "gianni-labs",
+  "owner": {
+    "name": "Gianni Carvacho",
+    "url": "https://github.com/gianni-labs"
+  },
+  "plugins": [
+    {
+      "name": "spec-design",
+      "source": "./",
+      "description": "De la idea cruda al código, sin que el agente improvise.",
+      "category": "workflow"
+    }
+  ]
+}
