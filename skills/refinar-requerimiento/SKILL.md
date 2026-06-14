@@ -5,7 +5,7 @@ description: Convierte un documento de requerimiento en bruto (idea, brainstorm,
 
 # refinar-requerimiento
 
-Primera fase de la metodología Spec-Design (convenciones compartidas: `CONVENCIONES.md` del harness):
+Primera fase de la metodología Spec-Design (convenciones compartidas: `documentacion/CONVENCIONES.md` del harness):
 
 ```
 /iniciar-harness → [idea en bruto]
@@ -57,12 +57,12 @@ Antes de escribir cualquier archivo, confirmar **en un solo mensaje breve**:
    - Tono: heredado del original. Si es coloquial / no técnico, mantenerlo.
    - Preguntas en archivo separado (`preguntas.md`).
    - No se agrega contenido nuevo ni decisiones técnicas.
-3. **Perfil del proyecto:** si no está ya capturado en `documentacion/INDICE.md` (proyecto iniciado sin `/iniciar-harness`), preguntarlo aquí — ¿UI? ¿integra LLM? ¿API/backend? — y registrarlo al inicio del requerimiento cerrado (ver `CONVENCIONES.md` §8).
+3. **Perfil del proyecto:** si no está ya capturado en `documentacion/INDICE.md` (proyecto iniciado sin `/iniciar-harness`), preguntarlo aquí — ¿UI? ¿integra LLM? ¿API/backend? — y registrarlo al inicio del requerimiento cerrado (ver `documentacion/CONVENCIONES.md` §8).
 4. **Resumen de qué se va a hacer** en 4–5 viñetas (reordenar, corregir ambigüedades, unificar formato, separar lo que está mezclado).
 
 No empezar hasta tener la confirmación. Si el usuario dice algo como "procede" o "dale", arrancar.
 
-> **Modo directo** (`CONVENCIONES.md` §9): si el usuario pasó el argumento `directo`, anunciar fuentes y enfoque en un mensaje y proceder sin esperar confirmación.
+> **Modo directo** (`documentacion/CONVENCIONES.md` §9): si el usuario pasó el argumento `directo`, anunciar fuentes y enfoque en un mensaje y proceder sin esperar confirmación.
 
 ---
 
@@ -114,7 +114,7 @@ No marcar como pregunta:
 
 ### Formato de `preguntas.md`
 
-El formato canónico del patrón preguntas→merge está en **`CONVENCIONES.md` §5** (bloques temáticos del proyecto, numeración global continua, contexto por pregunta, opciones (a)(b)(c), campo `R:`, bloque final "Fuera de scope (confirmar)").
+El formato canónico del patrón preguntas→merge está en **`documentacion/CONVENCIONES.md` §5** (bloques temáticos del proyecto, numeración global continua, contexto por pregunta, opciones (a)(b)(c), campo `R:`, bloque final "Fuera de scope (confirmar)").
 
 Deltas de esta fase:
 - **Máximo ~15 preguntas.** Si pasa de eso, el documento original está muy crudo y conviene una pasada de conversación previa.
@@ -124,7 +124,7 @@ Deltas de esta fase:
 
 ## Fase 2: Merge de respuestas
 
-Cuando el usuario indique que respondió `preguntas.md`, aplicar el merge según `CONVENCIONES.md` §5. Específico de esta fase — clasificar cada respuesta en uno de estos destinos:
+Cuando el usuario indique que respondió `preguntas.md`, aplicar el merge según `documentacion/CONVENCIONES.md` §5. Específico de esta fase — clasificar cada respuesta en uno de estos destinos:
 
 - **Integración directa** al cuerpo del v2 (cambio o adición a la sección correspondiente).
 - **Sección "Deseables post-MVP"** — el usuario dijo "esto sería bonito a futuro" o "esto es deseable pero no MVP".
@@ -144,7 +144,7 @@ Varias respuestas del usuario tienden a ser "esto déjalo para después". Esto g
 Al terminar el merge y las preguntas de seguimiento:
 
 1. Actualizar `documentacion/INDICE.md`: fase 1 → ✅ (y registrar el perfil del proyecto si se capturó aquí).
-2. **Archivar los intermedios automáticamente** (`CONVENCIONES.md` §5): mover a `01-requerimiento/_archivo/` el `preguntas.md` (ya integrado) y el documento de entrada que quedó reemplazado (si se trabajó con `-v2`); renombrar `<nombre>-v2.md` → `<nombre>.md` como artefacto vivo de la fase. Sin preguntar — es la convención.
+2. **Archivar los intermedios automáticamente** (`documentacion/CONVENCIONES.md` §5): mover a `01-requerimiento/_archivo/` el `preguntas.md` (ya integrado) y el documento de entrada que quedó reemplazado (si se trabajó con `-v2`); renombrar `<nombre>-v2.md` → `<nombre>.md` como artefacto vivo de la fase. Sin preguntar — es la convención.
 3. Ofrecer pasar al documento de diseño (`/documento-diseno`). Avanzar de fase sí es decisión del usuario.
 
 ---

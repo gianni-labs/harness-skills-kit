@@ -5,7 +5,7 @@ description: 'Inicializa un proyecto para trabajar con el harness Spec-Design: c
 
 # iniciar-harness
 
-Fase de arranque de la metodología Spec-Design (convenciones compartidas: `CONVENCIONES.md` del harness). Se corre **una sola vez** por proyecto, antes de la fase 1:
+Fase de arranque de la metodología Spec-Design (convenciones compartidas: `${CLAUDE_PLUGIN_ROOT}/skills/_harness/CONVENCIONES.md` del harness). Se corre **una sola vez** por proyecto, antes de la fase 1:
 
 ```
 /iniciar-harness (este skill) → 1 refinar-requerimiento → 2 documento-diseno → 3 wireframes* → 4 especificacion-tecnica → 5 plan-implementacion → 6 desarrollo → código
@@ -58,7 +58,7 @@ Tres escenarios:
 En un solo mensaje (o `AskUserQuestion` si el entorno lo soporta — esto sí es un fork de opciones):
 
 1. **Nombre del proyecto** (para los placeholders `{proyecto}` de las plantillas).
-2. **Perfil del proyecto** (`CONVENCIONES.md` §8): ¿tiene UI? ¿integra un LLM? ¿expone API/backend? ¿otra capacidad relevante?
+2. **Perfil del proyecto** (`${CLAUDE_PLUGIN_ROOT}/skills/_harness/CONVENCIONES.md` §8): ¿tiene UI? ¿integra un LLM? ¿expone API/backend? ¿otra capacidad relevante?
 3. **¿Existe ya una idea escrita?** (un `.md` con notas/brainstorm). Si sí, se moverá/copiará a `documentacion/01-requerimiento/` para que la fase 1 la consuma.
 4. **Respaldo git (opcional):** ¿quieres que el harness lleve un **respaldo versionado local** de la documentación? (a) **no**, lo manejas tú (default); (b) **sí**, `git commit` local al cerrar cada fase — **sin remoto, sin push**. El repo remoto y el deploy del código quedan siempre fuera del harness.
 
@@ -68,7 +68,7 @@ No preguntar nada más sobre el producto: idioma, stack y alcance pertenecen a l
 
 ## Fase 2: Crear estructura + instalar archivos base
 
-1. **Crear las carpetas** de la convención (`CONVENCIONES.md` §1):
+1. **Crear las carpetas** de la convención (`${CLAUDE_PLUGIN_ROOT}/skills/_harness/CONVENCIONES.md` §1):
 
 ```
 documentacion/
@@ -80,14 +80,14 @@ documentacion/
 └── mejoras/
 ```
 
-2. **Copiar las plantillas del kit** (`_harness/templates/` del harness) rellenando `{proyecto}`, `{fecha}` y el perfil:
-   - `templates/INDICE.md` → `documentacion/INDICE.md` (con el perfil registrado; si no hay UI, fase 3 → "— omitida").
-   - `_harness/CONVENCIONES.md` → `documentacion/CONVENCIONES.md`.
-   - `templates/BACKLOG.md` → `documentacion/BACKLOG.md`.
-   - `templates/INDICE-mejoras.md` → `documentacion/mejoras/INDICE.md` (ancla la carpeta de mejoras; queda vacío hasta el primer `/mejora`).
+2. **Copiar las plantillas del kit** (`${CLAUDE_PLUGIN_ROOT}/skills/_harness/templates/`) rellenando `{proyecto}`, `{fecha}` y el perfil:
+   - `${CLAUDE_PLUGIN_ROOT}/skills/_harness/templates/INDICE.md` → `documentacion/INDICE.md` (con el perfil registrado; si no hay UI, fase 3 → "— omitida").
+   - `${CLAUDE_PLUGIN_ROOT}/skills/_harness/CONVENCIONES.md` → `documentacion/CONVENCIONES.md`.
+   - `${CLAUDE_PLUGIN_ROOT}/skills/_harness/templates/BACKLOG.md` → `documentacion/BACKLOG.md`.
+   - `${CLAUDE_PLUGIN_ROOT}/skills/_harness/templates/INDICE-mejoras.md` → `documentacion/mejoras/INDICE.md` (ancla la carpeta de mejoras; queda vacío hasta el primer `/mejora`).
    - Los archivos de control de `05-desarrollo/` **no** se crean aquí — los inicializa `plan-implementacion` en la fase 5.
 
-3. **CLAUDE.md del proyecto** (`templates/CLAUDE-proyecto.md`):
+3. **CLAUDE.md del proyecto** (`${CLAUDE_PLUGIN_ROOT}/skills/_harness/templates/CLAUDE-proyecto.md`):
    - Si **no existe**: copiarlo rellenando placeholders.
    - Si **existe**: proponer un **merge** — añadir el bloque del harness (pipeline, prácticas, punteros) al CLAUDE.md actual, mostrando el delta antes de aplicar. No reemplazar contenido del usuario.
 
@@ -151,7 +151,7 @@ Modo verificación (ver Fase 0): solo completar huecos, nunca regenerar `INDICE.
 
 - [ ] Las 6 carpetas de `documentacion/` + `mejoras/` (con su `INDICE.md`) existen.
 - [ ] `INDICE.md` instalado con el perfil del proyecto registrado (y fase 3 marcada "— omitida" si no hay UI).
-- [ ] `CONVENCIONES.md` y `BACKLOG.md` instalados.
+- [ ] `${CLAUDE_PLUGIN_ROOT}/skills/_harness/CONVENCIONES.md` y `BACKLOG.md` instalados.
 - [ ] `CLAUDE.md` creado o complementado (sin pisar contenido del usuario).
 - [ ] Política de git registrada en el perfil (y `git init` hecho **solo** si el usuario activó el respaldo).
 - [ ] Checklist de verificación reportado con el siguiente paso concreto.

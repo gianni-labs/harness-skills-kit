@@ -5,7 +5,7 @@ description: 'Front-door del track de mejoras post-MVP: toma un ítem ya prioriz
 
 # mejora
 
-Track de **iteración post-MVP** del harness Spec-Design (convenciones compartidas: `CONVENCIONES.md` del harness). No es una fase nueva del pipeline lineal: es el **router** que aplica el harness, en versión reducida, a una sola mejora del backlog.
+Track de **iteración post-MVP** del harness Spec-Design (convenciones compartidas: `documentacion/CONVENCIONES.md` del harness). No es una fase nueva del pipeline lineal: es el **router** que aplica el harness, en versión reducida, a una sola mejora del backlog.
 
 ```
 … MVP construido … → BACKLOG.md → /mejora <id> (este skill)
@@ -62,7 +62,7 @@ Con eso, proponer el **track** vía `AskUserQuestion` (el usuario confirma o aju
 | **C — Contratos** | toca tipos/schema/endpoints/datos | `diseno.md` + `especificacion-tecnica.md` [+ `diseno-tecnico.md` si toca ADR] + `plan.md` | `documento-diseno` → `especificacion-tecnica` → `plan-implementacion` → `desarrollo` |
 | **D — Grande** | feature arquitectónica (ej. multiusuario + auth + DB) | ciclo completo (casi un mini-MVP en su sub-árbol) | el pipeline completo, scoped |
 
-**DESIGN.md (obligatorio en track B):** antes de arrancar el diseño de cualquier mejora visual, verificar que existe `DESIGN.md` en la raíz del repo (sistema de diseño, formato Google Stitch — ver `CONVENCIONES.md` §7). Si no existe, **generarlo leyendo el codebase** (colores, tipografía, espaciado, patrones de componentes) — nunca inventando valores. Al cerrar una mejora visual que cambie tokens o patrones establecidos, actualizarlo.
+**DESIGN.md (obligatorio en track B):** antes de arrancar el diseño de cualquier mejora visual, verificar que existe `DESIGN.md` en la raíz del repo (sistema de diseño, formato Google Stitch — ver `documentacion/CONVENCIONES.md` §7). Si no existe, **generarlo leyendo el codebase** (colores, tipografía, espaciado, patrones de componentes) — nunca inventando valores. Al cerrar una mejora visual que cambie tokens o patrones establecidos, actualizarlo.
 
 > Ante la duda entre dos tracks, elegir el **más riguroso**. El costo de un doc de más es bajo; el de un contrato sin definir, alto.
 
@@ -74,7 +74,7 @@ No avanzar sin que el usuario confirme el track.
 
 1. **Crear la carpeta** `documentacion/mejoras/<id>-<slug>/` (slug corto en kebab-case; `<id>` = el ID del backlog: `RF-15`, `MEJ-01`, …).
 2. **Marcar la fila del backlog** como 🔵 planificado y enlazarla a la carpeta.
-3. **Disparar los skills del track, en orden**, cada uno en **modo mejora (scoped)** (ver la sección "Modo mejora" de cada skill) y en **modo directo** (`CONVENCIONES.md` §9: este orquestador ya tiene su propio gate, así que las Fases 0 de las skills de fase no vuelven a pedir confirmación):
+3. **Disparar los skills del track, en orden**, cada uno en **modo mejora (scoped)** (ver la sección "Modo mejora" de cada skill) y en **modo directo** (`documentacion/CONVENCIONES.md` §9: este orquestador ya tiene su propio gate, así que las Fases 0 de las skills de fase no vuelven a pedir confirmación):
    - El insumo de cada fase es el documento de la fase anterior **de esta mejora** + el baseline del MVP (solo lectura).
    - Cada doc de la mejora es un **delta**: solo los RF/ADR/contratos/tareas que la mejora agrega o cambia.
 4. Si un doc de la mejora necesita decisiones del usuario, se usa el patrón `preguntas-*.md` dentro de la carpeta de la mejora (igual que en el pipeline principal).

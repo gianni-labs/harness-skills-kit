@@ -5,7 +5,7 @@ description: 'Toma un documento de diseño cerrado y produce wireframes en ASCII
 
 # wireframes
 
-Tercera fase de la metodología Spec-Design (convenciones compartidas: `CONVENCIONES.md` del harness):
+Tercera fase de la metodología Spec-Design (convenciones compartidas: `documentacion/CONVENCIONES.md` del harness):
 
 ```
 [requerimiento cerrado]  →  2 documento-diseno
@@ -15,7 +15,7 @@ Tercera fase de la metodología Spec-Design (convenciones compartidas: `CONVENCI
                             4 especificacion-tecnica → 5 plan-implementacion → 6 desarrollo → código
 ```
 
-> **Fase condicional:** esta fase aplica solo a proyectos **con UI** (perfil del proyecto, `CONVENCIONES.md` §8). Si el proyecto no tiene UI (CLI, API, librería), la fase **se omite**: marcarla como "— omitida" en `INDICE.md` y pasar directo a `/especificacion-tecnica`.
+> **Fase condicional:** esta fase aplica solo a proyectos **con UI** (perfil del proyecto, `documentacion/CONVENCIONES.md` §8). Si el proyecto no tiene UI (CLI, API, librería), la fase **se omite**: marcarla como "— omitida" en `INDICE.md` y pasar directo a `/especificacion-tecnica`.
 
 El objetivo es validar **layout de cada pantalla** y, sobre todo, el **orden y las secuencias de navegación** entre ellas, con el artefacto más barato de iterar posible: **texto**. No hay clic, no hay build, no hay framework. Se trabaja en markdown, vive junto al diseño y se itera en segundos.
 
@@ -79,7 +79,7 @@ Antes de tocar archivos, confirmar **en un solo mensaje breve**:
 
 No empezar hasta tener la confirmación.
 
-> **Modo directo** (`CONVENCIONES.md` §9): si la skill fue invocada por el orquestador `mejora` o el usuario pasó `directo`, anunciar fuentes y defaults en un mensaje y proceder sin esperar confirmación.
+> **Modo directo** (`documentacion/CONVENCIONES.md` §9): si la skill fue invocada por el orquestador `mejora` o el usuario pasó `directo`, anunciar fuentes y defaults en un mensaje y proceder sin esperar confirmación.
 
 ---
 
@@ -170,7 +170,7 @@ Usar un `sequenceDiagram` o `flowchart` solo si el flujo tiene ramas que no se e
 
 ### Reglas para `preguntas-wireframes.md`
 
-Formato canónico en **`CONVENCIONES.md` §5**. Deltas de esta fase:
+Formato canónico en **`documentacion/CONVENCIONES.md` §5**. Deltas de esta fase:
 
 - Máximo ~12 preguntas.
 
@@ -207,7 +207,7 @@ Al terminar, generar un resumen en el chat:
 Listo para: plan de implementación / código.
 ```
 
-**Archivar** `preguntas-wireframes.md` (integrado) en `03-wireframes/_archivo/` — automático, según `CONVENCIONES.md` §5, sin preguntar. Actualizar `INDICE.md` con el estado de la fase 3.
+**Archivar** `preguntas-wireframes.md` (integrado) en `03-wireframes/_archivo/` — automático, según `documentacion/CONVENCIONES.md` §5, sin preguntar. Actualizar `INDICE.md` con el estado de la fase 3.
 
 ---
 

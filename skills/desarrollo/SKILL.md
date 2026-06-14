@@ -5,7 +5,7 @@ description: 'Ejecuta el plan de implementación tarea por tarea, construyendo e
 
 # desarrollo
 
-Sexta fase de la metodología Spec-Design, segunda mitad de la **construcción** (convenciones compartidas: `CONVENCIONES.md` del harness): el ejecutor.
+Sexta fase de la metodología Spec-Design, segunda mitad de la **construcción** (convenciones compartidas: `documentacion/CONVENCIONES.md` del harness): el ejecutor.
 
 ```
 … → 5 plan-implementacion → 6 desarrollo (este skill) ──► código
@@ -89,7 +89,7 @@ Al terminar **todas las fases** del plan (el release queda construido):
 2. **Actualizar `BACKLOG.md`:** subir el release a ✅ en la tabla de Releases. Si alguna funcionalidad del backlog se implementó en este release, marcarla ✅.
 3. **Actualizar `INDICE.md`:** reflejar que el release está construido (no dejar "no iniciado" cuando ya está hecho).
 4. Confirmar que el alcance diferido sigue visible en `BACKLOG.md` para el próximo ciclo (nada se "pierde" al cerrar el MVP).
-5. *(Opcional, si el proyecto tiene UI)* **Encuadre visual + `DESIGN.md`:** dejar claro que la UI del MVP es **base funcional, no identidad de marca** (decisión, no límite; ver `CONVENCIONES.md` §7). Proponer generar `DESIGN.md` en la raíz (formato Google Stitch, leyendo el codebase) como punto de partida del **pulido visual en un track B** post-MVP. Si el usuario declina, el track B de `/mejora` lo generará cuando haga falta.
+5. *(Opcional, si el proyecto tiene UI)* **Encuadre visual + `DESIGN.md`:** dejar claro que la UI del MVP es **base funcional, no identidad de marca** (decisión, no límite; ver `documentacion/CONVENCIONES.md` §7). Proponer generar `DESIGN.md` en la raíz (formato Google Stitch, leyendo el codebase) como punto de partida del **pulido visual en un track B** post-MVP. Si el usuario declina, el track B de `/mejora` lo generará cuando haga falta.
 
 ---
 

@@ -5,7 +5,7 @@ description: 'Toma un requerimiento cerrado y produce un documento de diseño fu
 
 # documento-diseno
 
-Segunda fase de la metodología Spec-Design (convenciones compartidas: `CONVENCIONES.md` del harness):
+Segunda fase de la metodología Spec-Design (convenciones compartidas: `documentacion/CONVENCIONES.md` del harness):
 
 ```
 [requerimiento cerrado]  →  2 documento-diseno (este skill)
@@ -132,7 +132,7 @@ Antes de tocar archivos, confirmar **en un solo mensaje breve**:
 
 No empezar hasta tener la confirmación.
 
-> **Modo directo** (`CONVENCIONES.md` §9): si la skill fue invocada por el orquestador `mejora` o el usuario pasó `directo`, anunciar fuentes y defaults en un mensaje y proceder sin esperar confirmación.
+> **Modo directo** (`documentacion/CONVENCIONES.md` §9): si la skill fue invocada por el orquestador `mejora` o el usuario pasó `directo`, anunciar fuentes y defaults en un mensaje y proceder sin esperar confirmación.
 
 ---
 
@@ -255,7 +255,7 @@ Formato fijo (es el **contrato con el skill de plan de implementación**):
 
 ### Reglas para `preguntas-diseno.md`
 
-Formato canónico en **`CONVENCIONES.md` §5**. Deltas de esta fase:
+Formato canónico en **`documentacion/CONVENCIONES.md` §5**. Deltas de esta fase:
 
 - Máximo ~15 preguntas.
 - Bloques sugeridos (adaptar al proyecto):
@@ -270,7 +270,7 @@ Formato canónico en **`CONVENCIONES.md` §5**. Deltas de esta fase:
 
 ## Fase 2: Merge de respuestas
 
-Aplicar el merge según `CONVENCIONES.md` §5. Específico de esta fase — clasificar cada respuesta:
+Aplicar el merge según `documentacion/CONVENCIONES.md` §5. Específico de esta fase — clasificar cada respuesta:
 
 - **Confirmación de propuesta** → cambiar estado del ADR de `Propuesta pendiente` a `Aceptada`. Quitar el `(?)` de RNFs.
 - **Rechazo de propuesta** → mover la decisión a `Alternativas consideradas` y actualizar la decisión con la elegida.
@@ -300,7 +300,7 @@ Listo para especificación técnica y plan:
 - ADRs pendientes que fases posteriores deben respetar como abiertas: ADR-N
 ```
 
-**Archivar** `preguntas-diseno.md` (integrado) en `02-diseno/_archivo/` — automático, según `CONVENCIONES.md` §5, sin preguntar. Luego ofrecer continuar con `/wireframes` (o directamente `/especificacion-tecnica` si el proyecto no tiene UI).
+**Archivar** `preguntas-diseno.md` (integrado) en `02-diseno/_archivo/` — automático, según `documentacion/CONVENCIONES.md` §5, sin preguntar. Luego ofrecer continuar con `/wireframes` (o directamente `/especificacion-tecnica` si el proyecto no tiene UI).
 
 ---
 
