@@ -76,31 +76,55 @@ A diferencia de otras herramientas spec-driven, este harness aporta cinco cosas 
 
 <p align="center"><img src="docs/assets/pipeline.png" alt="El pipeline de fases" width="820"></p>
 
-```
-/iniciar-harness → 💡 idea
-                     │
-   1 refinar-requerimiento   → requerimiento limpio (qué se quiere)
-   2 documento-diseno        → diseño funcional + técnico (cómo, alto nivel)
-   3 wireframes *            → layout y navegación (sin stack)
-   4 especificacion-tecnica  → contratos exactos (tipos, APIs, módulos)
-   5 plan-implementacion     → plan Fases → Tareas + control
-   6 desarrollo              → 💻 código
-                     │
-                BACKLOG.md → /mejora <id>  (ciclo post-MVP, adaptativo)
+```mermaid
+flowchart TD
+    idea([💡 idea cruda]) --> init([⚙️ iniciar-harness])
+    init --> f1
+
+    subgraph DOC ["📐 DOCUMENTACIÓN · altitud decreciente"]
+        direction TB
+        f1["1 · refinar-requerimiento — qué se quiere"]
+        f2["2 · documento-diseno — cómo, a alto nivel"]
+        f3["3 · wireframes (solo con UI) — layout y navegación"]
+        f4["4 · especificacion-tecnica — contratos exactos"]
+        f1 --> f2 --> f3 --> f4
+    end
+
+    subgraph BUILD ["🔨 CONSTRUCCIÓN"]
+        direction TB
+        f5["5 · plan-implementacion — Fases → Tareas + control"]
+        f6["6 · desarrollo — 💻 código"]
+        f5 --> f6
+    end
+
+    f4 --> f5
+    f6 --> bl[("BACKLOG.md · cola viva del producto")]
+    bl -.->|"/mejora · rigor adaptativo (tracks A/B/C/D)"| f2
+
+    classDef doc fill:#eef2ff,stroke:#4f46e5,color:#1e1b4b;
+    classDef build fill:#ecfeff,stroke:#0d9488,color:#134e4a;
+    classDef anchor fill:#fef3c7,stroke:#b45309,color:#7c2d12;
+    class f1,f2,f3,f4 doc;
+    class f5,f6 build;
+    class idea,init,bl anchor;
 ```
 
-<sub>\* La fase de wireframes se omite automáticamente si el proyecto no tiene UI (CLI, API, librería).</sub>
+<sub>Cada flecha es un **handoff con contrato fijo**: lo que una fase produce es exactamente lo que la siguiente consume. La fase de wireframes se omite sola si el proyecto no tiene UI (CLI, API, librería). El ciclo post-MVP (línea punteada) reaplica solo las fases que el cambio necesita.</sub>
 
-| Skill | Rol | Produce |
-|-------|-----|---------|
-| `iniciar-harness` | arranque (no es fase) | estructura del proyecto, plantillas, perfil (UI/LLM/API), `CLAUDE.md` |
-| `refinar-requerimiento` | fase 1 | requerimiento limpio + preguntas |
-| `documento-diseno` | fase 2 | diseño funcional + técnico (User Stories + EARS, MoSCoW, FURPS+, ADR) |
-| `wireframes` | fase 3 *(con UI)* | wireframes ASCII + mapa de navegación |
-| `especificacion-tecnica` | fase 4 | tipos, contratos de API, módulos (secciones condicionales por perfil) |
-| `plan-implementacion` | fase 5 | plan Fases → Tareas + archivos de control + `BACKLOG.md` |
-| `desarrollo` | fase 6 | código + seguimiento/bitácora |
-| `mejora` | ciclo post-MVP | router adaptativo (tracks A/B/C/D) con gate de aprobación humano |
+### Las skills, una por una
+
+La cadena de contratos: cada fase **consume** el artefacto de la anterior y **produce** el de la siguiente, sin ambigüedad.
+
+| Etapa | Skill | Consume | Produce |
+|-------|-------|---------|---------|
+| arranque | `iniciar-harness` | — | estructura, plantillas, perfil (UI/LLM/API), `CLAUDE.md` |
+| fase 1 | `refinar-requerimiento` | idea cruda | requerimiento limpio + preguntas |
+| fase 2 | `documento-diseno` | requerimiento | diseño funcional + técnico (EARS · MoSCoW · FURPS+ · ADR) |
+| fase 3 *(con UI)* | `wireframes` | §Vistas + §Flujos | wireframes ASCII + mapa de navegación |
+| fase 4 | `especificacion-tecnica` | diseño + wireframes | tipos, contratos de API, módulos (condicional por perfil) |
+| fase 5 | `plan-implementacion` | especificación | plan Fases → Tareas + control + `BACKLOG.md` |
+| fase 6 | `desarrollo` | plan + contratos | código + seguimiento/bitácora |
+| post-MVP | `mejora` | `BACKLOG.md` | router adaptativo (tracks A/B/C/D) + gate humano |
 
 <!--
 ══════════════════════════════════════════════════════════════════════════════
@@ -208,42 +232,45 @@ Ante la duda entre dos tracks, gana el más riguroso. Cada mejora vive en su pro
 
 ---
 
-## 🔬 Comparación con otras herramientas
+## 🔬 Dónde encaja
 
-| | **Spec-Design Harness** | GitHub Spec Kit | AWS Kiro | BMAD Method |
-|---|:---:|:---:|:---:|:---:|
-| Fases con contrato fijo | ✅ | ✅ | ✅ | ✅ |
-| Preguntar en vez de inventar (preguntas→merge) | ✅ | parcial | parcial | ❌ |
-| Ciclo de vida post-MVP (rigor adaptativo) | ✅ | ❌ | ❌ | ❌ |
-| Gate de aprobación humano formalizado | ✅ | ❌ | ❌ | parcial |
-| Memoria con trazabilidad cruzada | ✅ | ❌ | parcial | ❌ |
-| Perfil de proyecto (omite fases según UI/LLM/API) | ✅ | ❌ | ❌ | ❌ |
+> **No es un catálogo de buenas prácticas; es la disciplina que las pone en orden.** La mayoría de las herramientas del género son colecciones de prácticas activables o pipelines sin estado. Este harness es lo otro: un **orquestador con contratos y memoria** que decide *qué fase, en qué orden, con qué parada* — y se niega a improvisar.
 
-El harness no llega a competir en cobertura de integraciones (Spec Kit soporta decenas de agentes): llega con **disciplina** — el flujo correcto, las paradas correctas y la negativa a improvisar.
+| | **Spec-Design Harness** | GitHub Spec Kit | AWS Kiro | BMAD Method | agent-skills |
+|---|:---:|:---:|:---:|:---:|:---:|
+| Fases con contrato fijo (handoff sin ambigüedad) | ✅ | ✅ | ✅ | ✅ | ❌ |
+| Preguntar en vez de inventar (preguntas→merge async) | ✅ | parcial | parcial | ❌ | parcial |
+| Ciclo de vida post-MVP (rigor adaptativo) | ✅ | ❌ | ❌ | ❌ | ❌ |
+| Gate de aprobación humano formalizado | ✅ | ❌ | ❌ | parcial | parcial |
+| Memoria con trazabilidad cruzada | ✅ | ❌ | parcial | ❌ | ❌ |
+| Perfil de proyecto (omite fases según UI/LLM/API) | ✅ | ❌ | ❌ | ❌ | ❌ |
+| Estado persistente y reanudable en disco | ✅ | parcial | ✅ | ❌ | ❌ |
+| Cobertura horizontal de calidad (testing/sec/perf…) | referencias | ❌ | ❌ | parcial | ✅ |
 
-*Fuentes:* [github/spec-kit](https://github.com/github/spec-kit) · [Claude Code Plugins](https://code.claude.com/docs/en/plugin-marketplaces)
+La última fila es la honesta: en **cobertura horizontal de prácticas**, una biblioteca como [`agent-skills`](https://github.com/addyosmani/agent-skills) es más amplia. Por eso este harness **no compite ahí** — la incorpora como *referencias* y *personas de revisión*, y se queda con lo que nadie del género hace tan completo: el **flujo correcto, las paradas correctas y la trazabilidad de cada decisión**.
+
+> Dicho de otro modo: `agent-skills` (y similares) responden *"¿qué práctica aplico?"*; este harness responde *"¿en qué orden, con qué contratos, con qué memoria, y qué pasa después del MVP?"*. Son **complementarios** — el harness es la capa que organiza prácticas como esas, no otra colección de ellas.
+
+*Fuentes:* [github/spec-kit](https://github.com/github/spec-kit) · [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills) · [Claude Code Plugins](https://code.claude.com/docs/en/plugin-marketplaces)
 
 ---
 
 ## 📂 Estructura del repo
 
 ```
-skills/<nombre>/SKILL.md          ← las 8 skills instalables
-skills/_harness/CONVENCIONES.md   ← única fuente de lo compartido (rutas, IDs, estados, patrones)
-skills/_harness/templates/        ← plantillas (INDICE, BACKLOG, bitácora, seguimiento, CLAUDE…)
-skills/_harness/referencias/      ← checklists de calidad (seguridad, accesibilidad, performance, testing)
-skills/_harness/agentes/          ← personas de revisión (revisor-codigo, auditor-seguridad)
-docs/MANUAL.md                    ← manual del harness (el porqué de cada decisión)
+harness-skills-kit/
+├── skills/
+│   ├── <fase>/SKILL.md        # las 8 skills instalables — una por fase del pipeline
+│   └── _harness/              # lo compartido (nunca duplicado en una skill)
+│       ├── CONVENCIONES.md    #   única fuente: rutas, IDs, estados, patrón preguntas→merge
+│       ├── templates/         #   plantillas que las skills copian al proyecto destino
+│       ├── referencias/       #   checklists de calidad (seguridad, accesibilidad, performance, testing)
+│       └── agentes/           #   personas de revisión (revisor-codigo, auditor-seguridad)
+├── docs/MANUAL.md             # el porqué del harness (principios, fases, ciclo de vida)
+└── .claude-plugin/            # manifiesto para instalar como plugin de Claude Code
 ```
 
-## 🗺️ Estado y roadmap
-
-- [x] Las 8 skills, genéricas y desacopladas de cualquier dominio
-- [x] Convenciones y plantillas centralizadas
-- [x] Skill de arranque (`iniciar-harness`)
-- [x] Empaquetado como plugin de Claude Code (`.claude-plugin/marketplace.json`)
-- [x] Archivo `LICENSE` (MIT)
-- [ ] Proyecto de ejemplo + artefactos dorados (demo end-to-end)
+Dos ideas guían la organización: **una fase = una skill = un artefacto**, y **todo lo compartido vive en `_harness/`** (las skills lo referencian, no lo copian).
 
 ## 🤝 Contribuir
 
