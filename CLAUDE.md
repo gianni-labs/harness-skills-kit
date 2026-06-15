@@ -17,6 +17,8 @@ El harness es **genérico por diseño**: ninguna skill puede referenciar un domi
 
 - `skills/_harness/CONVENCIONES.md` — **única fuente de lo compartido**: rutas (convención fija `documentacion/01..05`), IDs, estados, patrón preguntas→merge, gate humano vs AskUserQuestion, esqueleto de skill, perfil, modo directo. Las skills referencian este doc y solo definen sus deltas.
 - `skills/_harness/templates/` — plantillas que las skills copian (INDICE, BACKLOG, bitácora, seguimiento, herramientas, CLAUDE del proyecto destino). No incrustar plantillas en los SKILL.md.
+- `skills/_harness/referencias/` — checklists de calidad desacopladas (seguridad, accesibilidad, performance, testing) que las fases **consultan bajo demanda**; recurso opcional condicionado por perfil (CONVENCIONES §12). No incrustar su contenido en los SKILL.md.
+- `skills/_harness/agentes/` — personas de revisión adversarial (`revisor-codigo`, `auditor-seguridad`) que `desarrollo` invoca como sub-agente en los gates; opcionales con fallback manual (CONVENCIONES §13).
 - `docs/MANUAL.md` — el *porqué* del harness. Cambios estructurales a una skill deben reflejarse ahí y en CONVENCIONES si tocan lo compartido.
 - `analisis/` — working docs del kit: `analisis-harness.md` (diagnóstico) y `plan-mejoras.md` (tracking de mejoras aplicadas al kit).
 
@@ -31,7 +33,7 @@ Reglas que las skills codifican (no eliminarlas al refactorizar):
 - Gate humano entre documentación y desarrollo autónomo (`📝 documentado (espera OK)`).
 - Herramientas del entorno (`code-review`, `verify`…) son opcionales con fallback manual; los gates no se saltan.
 
-Secciones que cada skill de fase mantiene (esqueleto en CONVENCIONES §10): contrato de entrada, qué hace / qué NO hace, Fase 0 (con modo directo), generación, merge, cierre+INDICE, modo mejora (scoped), casos especiales, anti-patrones, output check.
+Secciones que cada skill de fase mantiene (esqueleto en CONVENCIONES §10): contrato de entrada, qué hace / qué NO hace, Fase 0 (con modo directo), generación, merge, cierre+INDICE, modo mejora (scoped), casos especiales, anti-patrones, racionalizaciones (excusa→realidad), output check.
 
 ## Convenciones de IDs y estados
 

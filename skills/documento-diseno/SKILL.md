@@ -178,6 +178,7 @@ No empezar hasta tener la confirmación.
 - Categorías FURPS+: Functionality, Usability, Reliability, Performance, Supportability, + (Design, Implementation, Interface).
 - RNFs inferidos (no presentes literalmente en el requerimiento) → marcar con `(?)` y agregar pregunta.
 - Ejemplos típicos a evaluar (sin inventar): responsive mobile, accesibilidad básica, tiempos de respuesta tolerables (especialmente si hay servicios externos o LLM), persistencia confiable, idioma del UI.
+- Para no olvidar **dimensiones** de Performance/Usabilidad, consultar `${CLAUDE_PLUGIN_ROOT}/skills/_harness/referencias/performance.md` y `accesibilidad.md` como guía. Sirven para *qué evaluar*, no para *inventar métricas*: si una métrica no viene del usuario, va con `(?)` a preguntas.
 
 **§4 Arquitectura general:**
 - Diagrama de componentes (mermaid `graph` o `C4`) si la app tiene > 3 piezas.
@@ -356,6 +357,17 @@ Preguntar: "El requerimiento dice X pero ahora indicas Y — ¿actualizamos el r
 - ❌ Documentos que repiten el requerimiento en vez de derivarlo (el diseño es **traducción técnica**, no copia).
 
 ---
+
+## Racionalizaciones (excusa → realidad)
+
+| Excusa | Realidad |
+|--------|----------|
+| "Este RF es obvio aunque no esté en el requerimiento, lo agrego." | El scope se cerró antes. Lo que emerge va a `preguntas-diseno.md`, no al diseño por tu cuenta. |
+| "Pongo performance < 200ms, suena profesional." | Métrica inventada. Los RNF sin evidencia en el requerimiento llevan `(?)` y pregunta. |
+| "Elijo yo la DB para no frenar el avance." | Si el usuario no la validó, es `Propuesta pendiente` (máx. 2 alternativas), no una decisión cerrada. |
+| "Ya que describo pantallas, defino colores y spacing." | Eso es wireframe / UI fina. Aquí la vista se describe **funcionalmente**. |
+| "El ADR solo necesita la decisión; las alternativas son relleno." | Un ADR sin alternativas ni razones de descarte no es un ADR, es una afirmación. |
+| "Copio el requerimiento a las secciones del diseño y listo." | El diseño es **traducción técnica**, no copia. Repetir el requerimiento no es diseñar. |
 
 ## Output check (definition of done)
 

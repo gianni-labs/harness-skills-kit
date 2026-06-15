@@ -181,6 +181,18 @@ Si después de leer no hay material suficiente para producir un v2 útil, decirl
 
 ---
 
+## Racionalizaciones (excusa → realidad)
+
+El modo de falla #1 de esta fase es "ayudar" agregando. Estas son las excusas que lo disfrazan:
+
+| Excusa | Realidad |
+|--------|----------|
+| "Esta sección quedó vacía, la completo con algo razonable." | Un vacío es una señal, no un error. Se convierte en pregunta; no se rellena con algo plausible. |
+| "Todo requerimiento serio lleva métricas de éxito / KPIs, los agrego." | Si el usuario no los pidió, es invención. No es tu documento. |
+| "El usuario escribe informal, lo profesionalizo." | Reescribir su voz pierde matices y precisión. El tono se hereda tal cual. |
+| "Sé qué framework conviene, lo sugiero acá." | El stack es de la fase de diseño. Mencionarlo aquí contamina la altitud del requerimiento. |
+| "Es más rápido si decido yo el alcance del MVP." | El alcance es decisión del usuario. Decidir por él es exactamente el error que el harness existe para evitar. |
+
 ## Output check (definition of done)
 
 Al cerrar, el documento limpio debe poder leerse por una persona ajena al proyecto y entender en **5 minutos**:

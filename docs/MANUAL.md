@@ -137,6 +137,18 @@ ITERACIÓN:       BACKLOG.md → /mejora <id> → [clasificar impacto] → track
 
 ---
 
+## 7.bis Recursos de calidad transversales
+
+El harness organiza el *flujo* (qué fase, en qué orden, con qué contratos); la *cobertura de calidad horizontal* (seguridad, accesibilidad, performance, testing) vive como **recursos opcionales** que las fases consultan, no como fases nuevas:
+
+- **Referencias** (`skills/_harness/referencias/`): checklists desacopladas que las fases cargan bajo demanda — `documento-diseno` para no olvidar dimensiones de RNF, `especificacion-tecnica` para el contrato de validación, `desarrollo` al construir y verificar, `wireframes` para no diseñar barreras de accesibilidad. Condicionadas por perfil (la de accesibilidad solo con UI). Detalle en `CONVENCIONES.md §12`.
+- **Personas de revisión** (`skills/_harness/agentes/`): `revisor-codigo` (5 ejes) y `auditor-seguridad` (OWASP) que `desarrollo` invoca como sub-agente en los gates para una revisión adversarial con contexto fresco, en vez de auto-revisarse. Opcionales con fallback manual. Detalle en `CONVENCIONES.md §13`.
+- **Anti-racionalización:** además de "Qué NO hace" y "anti-patrones", cada skill de fase trae una tabla `Excusa → Realidad` que desarma los atajos típicos del modelo en *esa* fase (esqueleto en `CONVENCIONES.md §10`).
+
+Ninguno de estos recursos reabre la separación por altitud: se subordinan a una fase existente o se consultan como referencia. El núcleo (contratos, preguntas→merge, gates, post-MVP, trazabilidad) no cambia.
+
+---
+
 ## 8. Auto-mejora del harness (opcional)
 
 Si un proyecto quiere registrar fricciones/mejoras **del harness mismo** (no del producto), crea un `MEJORAS-HARNESS.md` en una carpeta meta (ej. `harness/`). El skill `desarrollo` lo detecta por convención y registra ahí las observaciones sobre el flujo/skills, separadas de la bitácora del proyecto (formato `M-{nnn}`, ver la sección "Dogfooding del harness" de `desarrollo`). Si el archivo no existe, el mecanismo queda inactivo.

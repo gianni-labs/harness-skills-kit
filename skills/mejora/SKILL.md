@@ -153,6 +153,16 @@ Una mejora a la vez (igual que el desarrollo secuencial del MVP). Si son interde
 
 ---
 
+## Racionalizaciones (excusa → realidad)
+
+| Excusa | Realidad |
+|--------|----------|
+| "Es un cambio chico, lo codeo directo del backlog." | Todo pasa por un track. Codear suelto rompe la trazabilidad y el gate de revisión. |
+| "Parece track A, me ahorro la spec." | Si toca contratos, es track C. El tamaño percibido engaña; ante la duda, gana el track más riguroso. |
+| "Edito el contrato del MVP para que calce con la mejora." | La mejora **extiende** como delta. Romper un contrato existente exige decisión explícita (posible ADR nuevo). |
+| "La doc está lista, encadeno a desarrollo de una." | Falta el OK explícito del usuario. El gate de revisión de documentación no se salta. |
+| "Creo una bitácora para esta mejora." | La memoria del proyecto es única (`bitacora.md` global, con `Origen` = ID de la mejora). |
+
 ## Output check (definition of done)
 
 - [ ] El ítem existe en `BACKLOG.md` con ID estable.

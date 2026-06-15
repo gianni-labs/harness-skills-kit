@@ -151,7 +151,8 @@ Toda skill de fase mantiene estas secciones (su orden y presencia es parte del c
 7. **Modo mejora (scoped)** — comportamiento delta dentro del track de `/mejora`.
 8. **Manejo de casos especiales**.
 9. **Anti-patrones a evitar**.
-10. **Output check** (definition of done; si un check falla, la skill no termina).
+10. **Racionalizaciones (excusa → realidad)** — tabla de 4–6 filas con las excusas típicas con que un LLM se salta la disciplina de *esa* fase y su refutación. Complementa a "Anti-patrones" (que dice *qué* no hacer) atacando el *por qué se lo salta igual*. Excusas específicas de la fase, no genéricas.
+11. **Output check** (definition of done; si un check falla, la skill no termina).
 
 ## 11. Reglas de oro (separación por altitud)
 
@@ -159,3 +160,27 @@ Toda skill de fase mantiene estas secciones (su orden y presencia es parte del c
 - `wireframes` no define stack. `especificacion-tecnica` no reabre ADRs. `plan-implementacion` no escribe código ni estima. `desarrollo` no re-planifica ni re-decide. `mejora` no codifica ni reabre los docs del MVP.
 - Herramientas del entorno (`code-review`, `security-review`, `verify`, `run`, etc.) son **opcionales**: si no están disponibles, el fallback es lint/build/tests manuales y revisión propia del diff.
 - Todas: **preguntar, no inventar**.
+
+## 12. Referencias de calidad (recurso opcional)
+
+El kit incluye checklists de calidad **desacopladas de las skills** en `${CLAUDE_PLUGIN_ROOT}/skills/_harness/referencias/` (índice: su `README.md`). Las fases las **consultan bajo demanda** (progressive disclosure) en vez de incrustar el contenido:
+
+| Referencia | La consultan | Condición |
+|------------|--------------|-----------|
+| `seguridad.md` | `especificacion-tecnica` (límites/validación), `desarrollo` (gate) | siempre; sección LLM solo con perfil LLM |
+| `accesibilidad.md` | `wireframes`, `desarrollo` | solo perfil **con UI** |
+| `performance.md` | `documento-diseno` (RNF Performance), `desarrollo` | siempre; sección frontend solo con UI |
+| `testing.md` | `desarrollo` | siempre |
+
+Son **recurso opcional**, como las herramientas del entorno: una fase las **referencia por ruta** cuando son relevantes; nunca las copia ni las da por obligatorias si no aplican al perfil.
+
+## 13. Personas de revisión (recurso opcional)
+
+El kit incluye personas especializadas para **revisión adversarial** en `${CLAUDE_PLUGIN_ROOT}/skills/_harness/agentes/` (índice: su `README.md`):
+
+| Persona | Rol | La invoca |
+|---------|-----|-----------|
+| `revisor-codigo` | Staff Engineer, revisión de 5 ejes (correctitud, legibilidad, arquitectura, seguridad, performance) | `desarrollo`, en todo gate de cierre de fase |
+| `auditor-seguridad` | Ingeniero de seguridad, OWASP (+ LLM si aplica) | `desarrollo`, cuando la fase toca datos sensibles/superficie expuesta |
+
+Se invocan como **sub-agente** (coherente con "sub-agentes solo para review/verify/research" de `desarrollo`). **Opcionales con fallback:** si el entorno no soporta sub-agentes, la misma grilla se aplica manualmente sobre el diff — el gate no se salta. Ambas **respetan los contratos** como fuente de verdad: revisan cumplimiento, no reabren diseño.

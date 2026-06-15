@@ -55,12 +55,29 @@ Para cada tarea del plan (en orden de dependencias):
 
 1. **Seleccionar** la siguiente tarea pendiente cuyas dependencias estén `✅`.
 2. **Marcar `🟡`** esa tarea en `seguimiento.md` (y actualizar "última actualización").
-3. **Implementar** estrictamente contra los contratos de la spec (archivos/tipos/endpoint indicados en la tarea).
-4. **Verificar** el criterio de done: lint/build, y `verify`/`run` cuando aplique.
+3. **Implementar** estrictamente contra los contratos de la spec (archivos/tipos/endpoint indicados en la tarea). Ver *Cómo implementar* abajo.
+4. **Verificar** el criterio de done con **evidencia**, no con "se ve bien": lint/build en verde, y `verify`/`run` cuando aplique. Si la tarea cambia comportamiento, el criterio incluye un test que lo prueba (ver `${CLAUDE_PLUGIN_ROOT}/skills/_harness/referencias/testing.md`).
 5. **Marcar `✅`** en `seguimiento.md` + recalcular barra de progreso.
 6. **Anotar en `bitacora.md`** si hubo decisión, issue o aprendizaje (si no, no ensuciar). Usar el formato con referencia cruzada: `### B-{nnn} · {fecha} · {TIPO}` + `**Origen:** {tarea en curso, ej. desarrollo F2-T5} · **Refs:** {ADR/RF/V} · **Por:** usuario|modelo|ambos`. El ID es correlativo respecto a la última entrada.
 
 > Si una tarea se bloquea, marcar `⛔`, anotar el motivo en `bitacora.md` y avisar al usuario; no saltarla en silencio si otras dependen de ella.
+
+### Cómo implementar (paso 3)
+
+El **qué** ya está cerrado (contratos); esto es disciplina del **cómo**:
+
+- **Rebanada vertical:** construir un camino completo y funcional a la vez (p. ej. tipo → endpoint → vista de un recurso), no toda la capa de datos y luego toda la API. Cada rebanada deja algo verificable de punta a punta.
+- **Si la tarea cambia comportamiento, test primero:** escribir el test que falla, implementar hasta que pase, y recién entonces limpiar (rojo → verde → refactor). Detalle y niveles en `${CLAUDE_PLUGIN_ROOT}/skills/_harness/referencias/testing.md`.
+- **Simplicidad:** preferir la solución obvia y aburrida. Si una abstracción no se gana su complejidad, no va. Tocar **solo** lo que la tarea pide (sin refactors oportunistas de código vecino: eso va al backlog).
+- **Seguridad desde el código:** validar la entrada en los límites y tratar la salida del LLM como no confiable, según el contrato de la spec y `${CLAUDE_PLUGIN_ROOT}/skills/_harness/referencias/seguridad.md`.
+
+### Cómo verificar (paso 4)
+
+Una tarea no está hecha hasta que hay **evidencia**:
+
+- Lint/build en verde + el test de la conducta pasa.
+- Si hay UI, la vista responde a la acción esperada (`verify`/`run` o chequeo manual); revisar accesibilidad básica con `${CLAUDE_PLUGIN_ROOT}/skills/_harness/referencias/accesibilidad.md` cuando la tarea entrega una pantalla.
+- "Lo probé manualmente" no persiste: lo que prueba la conducta es el test, no la inspección visual de una vez.
 
 ---
 
@@ -70,7 +87,7 @@ Al terminar todas las tareas de una fase:
 
 > Las herramientas nombradas aquí (`code-review`, `security-review`, `verify`, `run`) son **opcionales del entorno**: si alguna no está disponible, el fallback es lint/build/tests manuales y revisión propia del diff. El gate no se salta por falta de herramienta.
 
-1. **Review:** lanzar `code-review` (y `security-review` si la fase toca datos sensibles o superficie expuesta) — o revisar el diff manualmente si no están disponibles.
+1. **Review:** lanzar `code-review` (y `security-review` si la fase toca datos sensibles o superficie expuesta) — o revisar el diff manualmente si no están disponibles. La revisión cubre **cinco ejes**: correctitud (¿hace lo que la tarea dice?, ¿bordes y errores?), legibilidad, arquitectura (¿respeta patrones y contratos?), seguridad y performance. Para una revisión adversarial con contexto fresco, invocar como sub-agente la persona `revisor-codigo` (y `auditor-seguridad` si aplica) de `${CLAUDE_PLUGIN_ROOT}/skills/_harness/agentes/`; si el entorno no soporta sub-agentes, aplicar esa misma grilla manualmente sobre el diff. La auto-revisión "se ve bien" no cuenta como gate.
 2. **Verify:** correr la app / pruebas relevantes con `verify` o `run` — o ejecutarlas manualmente.
 3. **Actualizar** `seguimiento.md` (fase → ✅, progreso global).
 4. **Bitácora:** resumen breve de la fase (qué quedó, qué aprendiste).
@@ -111,6 +128,20 @@ Así el backlog queda como la **memoria de alcance** del producto, no solo lo qu
   - **Anotar en `bitacora.md`** (tipo `DECISIÓN` o `ISSUE`).
   - Si la desviación **cambia un contrato o un ADR**, **detenerse y avisar**: hay que volver a `especificacion-tecnica.md` (o al diseño) a actualizar la fuente de verdad antes de seguir. No editar el comportamiento divergiendo del documento.
 - Si la desviación es solo de implementación interna (no cambia contrato), seguir y dejar nota si es relevante.
+
+---
+
+## Cuando algo se rompe (triage)
+
+Si un test falla, el build se cae o el comportamiento es inesperado, **parar la línea**: no acumular más cambios encima de algo roto. Triage en cinco pasos:
+
+1. **Reproducir.** Conseguir un caso mínimo y determinista que falle. Sin reproducción confiable no hay arreglo confiable.
+2. **Localizar.** Acotar dónde ocurre (bisección, logs, leer el stack trace completo). No adivinar.
+3. **Reducir.** Quitar lo accesorio hasta el mínimo que reproduce el fallo.
+4. **Arreglar.** La causa raíz, no el síntoma. Si el arreglo desvía de un contrato, aplica la "Disciplina de contratos" (volver a la fase dueña).
+5. **Blindar.** Agregar el test que falla antes del fix y pasa después (la regla del bug, `${CLAUDE_PLUGIN_ROOT}/skills/_harness/referencias/testing.md`), para que la regresión no vuelva en silencio.
+
+Anotar en `bitacora.md` lo notable (tipo `ISSUE`/`DECISIÓN`). No marcar la tarea `✅` mientras el fallo siga vivo.
 
 ---
 
@@ -163,6 +194,19 @@ Resistir suavemente: el gate de verificación es lo que mantiene el desarrollo "
 - ❌ Dejar que se "pierda" alcance fuera del release (ideas/RFs/deuda nuevos): va a `BACKLOG.md`, no al olvido ni al release en curso.
 
 ---
+
+## Racionalizaciones (excusa → realidad)
+
+Esta fase es donde el modelo más tiende a tomar atajos, porque está "produciendo". Las excusas frecuentes:
+
+| Excusa | Realidad |
+|--------|----------|
+| "Marco la tarea ✅ porque escribí el código." | ✅ exige pasar el **criterio de done**, no escribir el archivo. Sin verificación, no está hecha. |
+| "El contrato está mal, lo parcho acá y sigo." | No se re-decide en silencio. Se señala y se vuelve a la fase dueña (spec/diseño). |
+| "Esta estructura nueva es mejor que la de la spec." | La spec manda. Improvisar estructuras rompe el contrato que el resto del código asume. |
+| "Lo probé manualmente, funciona." | El testeo manual no persiste. El cambio de mañana lo rompe sin que nadie se entere. |
+| "Aprovecho y refactorizo este módulo vecino." | Fuera del scope de la tarea. Se toca **solo** lo que la tarea pide; lo demás va al backlog. |
+| "Reviso mi propio diff, se ve bien." | La auto-revisión es donde más se relaja el criterio. Usar la persona revisora / el gate, no el "se ve bien". |
 
 ## Output check (por tarea y por fase)
 

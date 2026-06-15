@@ -119,6 +119,7 @@ Secciones **núcleo** (siempre) + secciones **condicionales** según el perfil d
 **§5 Modelo de error:**
 - Shape único de error de API/interfaz.
 - Tabla de **códigos de error** con significado y cuándo se produce.
+- Al definir validación en los límites (qué entra, qué se rechaza) y el tratamiento de la salida del LLM, consultar `${CLAUDE_PLUGIN_ROOT}/skills/_harness/referencias/seguridad.md` (validación por allowlist, datos sensibles, salida del LLM como entrada no confiable). Fija el *contrato* de validación; la implementación es de `desarrollo`.
 
 **§6 Contrato del LLM** *(solo si el perfil incluye LLM)*:
 - Respetar el nº de llamadas del ADR correspondiente.
@@ -210,6 +211,16 @@ Resistir: aquí solo se fijan contratos. La implementación es la fase siguiente
 - ❌ Secuenciar tareas o estimar (es del plan).
 
 ---
+
+## Racionalizaciones (excusa → realidad)
+
+| Excusa | Realidad |
+|--------|----------|
+| "Este ADR quedaría mejor con otra decisión, lo ajusto." | Si está `Aceptada`, se usa tal cual. Reabrirlo aquí rompe la separación por altitud. |
+| "Ya que tengo el contrato, escribo el cuerpo de la función." | Solo firmas, tipos y contratos. La lógica de negocio es la fase de desarrollo. |
+| "Fijo las versiones de los paquetes de paso." | El pin de versión es del plan, no del contrato. Aquí se nombran librerías candidatas, no versiones. |
+| "Agrego un endpoint útil aunque ningún RF lo pida." | Endpoint sin RF/vista que lo origine es over-spec. Cada contrato traza a algo. |
+| "El JSON Schema y los tipos casi coinciden, basta." | Desalineados es un bug del spec. Deben ser 1:1; si divergen, se corrige antes de cerrar. |
 
 ## Output check (definition of done)
 

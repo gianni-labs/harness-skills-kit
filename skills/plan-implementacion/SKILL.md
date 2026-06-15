@@ -102,7 +102,33 @@ No empezar sin confirmación.
 - **Trazabilidad:** cada tarea referencia su contrato en la spec; nada de tareas "huérfanas".
 - **Orden por dependencias:** una tarea no puede preceder a aquello de lo que depende.
 - **F0 primero:** scaffolding, estructura de carpetas, tipos base, puertos/interfaces (persistencia, integraciones) y config van antes que cualquier feature.
-- **Atómicas:** si una tarea no se puede verificar de una sentada, dividirla.
+- **Atómicas:** si una tarea no se puede verificar de una sentada, dividirla (ver tabla de tamaño abajo).
+
+### Tamaño de tarea (criterio de atomicidad)
+
+Usar como guía para decidir si una tarea está bien dimensionada o hay que partirla:
+
+| Tamaño | Archivos | Alcance | Ejemplo |
+|--------|----------|---------|---------|
+| **XS** | 1 | una función o un cambio de config | agregar una regla de validación |
+| **S** | 1–2 | un componente o un endpoint | un endpoint nuevo con su tipo |
+| **M** | 3–5 | una rebanada de feature | flujo de creación de un recurso (tipo + endpoint + vista) |
+| **L** | 5–8 | feature multi-componente | listado con filtro y paginación |
+| **XL** | 8+ | **demasiado grande — partir** | — |
+
+Una tarea **L** es el techo; cualquier cosa **XL** se descompone antes de cerrar el plan. Señales de que una tarea debe partirse: no se puede describir su criterio de done en ≤3 viñetas, toca dos subsistemas independientes, o el título lleva un "y" (suele ser dos tareas).
+
+### Checkpoints intermedios (fases largas)
+
+El **gate de cierre de fase** ya verifica al terminar cada fase. Para fases con **más de ~4 tareas**, insertar además un **checkpoint intermedio** cada 2–3 tareas: una parada verificable que confirma que el sistema sigue en pie antes de seguir acumulando cambios.
+
+```markdown
+##### Checkpoint F{n} (tras F{n}-T1..T3)
+- [ ] Lint/build en verde.
+- [ ] El flujo construido hasta acá corre end-to-end.
+```
+
+El checkpoint no es un gate de fase (no cierra fase ni dispara review completa): es una verificación temprana para fallar rápido. Las tareas de mayor riesgo se ubican **temprano** en la fase para que el primer checkpoint las cubra.
 
 ### Inicialización de los archivos de control
 
@@ -184,12 +210,23 @@ Resistir: aquí se define qué/orden, no el cómo del código.
 
 ---
 
+## Racionalizaciones (excusa → realidad)
+
+| Excusa | Realidad |
+|--------|----------|
+| "Las tareas son obvias, no detallo criterio de done." | Sin criterio verificable, "terminé" significa "escribí algo". El criterio es lo que hace la tarea cerrable. |
+| "Estimo cuánto demora cada tarea, ayuda a planear." | El harness no estima tiempos ni fechas. Secuencia por dependencias, no por calendario. |
+| "Esta tarea grande la dejo así, se entiende." | Si no se verifica de una sentada, se parte (ver tabla de sizing). Una tarea XL no es una tarea. |
+| "Ajusto este tipo de la spec que quedó raro." | No se reabren contratos ni ADRs. Si algo está mal, se vuelve a la fase dueña; no se parcha aquí. |
+| "Pongo algo de pseudocódigo para guiar el desarrollo." | El plan define **qué** y en **qué orden**, no el **cómo** del código. El pseudocódigo es ruido aquí. |
+
 ## Output check (definition of done)
 
 - [ ] `plan.md` con fases derivadas del orden de dependencias del MVP.
-- [ ] Toda tarea es atómica, trazable a la spec y tiene criterio de done.
+- [ ] Toda tarea es atómica (tamaño ≤ L; nada XL sin partir), trazable a la spec y con criterio de done.
 - [ ] Matriz de cobertura: todo RF Must aparece en ≥1 tarea.
 - [ ] F0 (scaffolding/contratos base) precede a las features.
+- [ ] Las fases con más de ~4 tareas tienen al menos un checkpoint intermedio.
 - [ ] `seguimiento.md` y `bitacora.md` inicializados con su formato.
 - [ ] `BACKLOG.md` creado/actualizado con el alcance diferido (nada de scope "perdido").
 - [ ] No hay código, ni contratos reabiertos, ni estimaciones.

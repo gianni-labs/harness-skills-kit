@@ -165,6 +165,7 @@ Usar un `sequenceDiagram` o `flowchart` solo si el flujo tiene ramas que no se e
 
 - **§5 Wireframes:** cubrir **todas las V-N del alcance**. Cada caja refleja los "Datos que muestra" y "Acciones" declarados en la V-N del diseño — ni más ni menos.
 - **Estados:** incluir vacío/loading/error cuando la V-N los mencione o cuando sean evidentes (ej. pantalla que depende de una llamada al LLM → loading + error).
+- **Accesibilidad estructural:** al bocetar, no introducir barreras que después cuesten (orden de foco lógico, etiquetas en campos, no depender solo del color, objetivos táctiles). Guía: `${CLAUDE_PLUGIN_ROOT}/skills/_harness/referencias/accesibilidad.md`. Es estructura/jerarquía, no UI fina.
 - **Datos mock:** marcarlos como `{mock}`. No inventar reglas de negocio detrás.
 - **Trazabilidad:** toda caja referencia sus RF-N y F-N. Una pantalla sin RF asociado es señal de over-design → revisar contra el diseño.
 
@@ -250,6 +251,16 @@ Re-derivar las cajas afectadas desde la V-N actualizada. El diseño manda.
 - ❌ Pantallas sin transiciones de salida (no se sabe a dónde se navega → secuencia incompleta).
 
 ---
+
+## Racionalizaciones (excusa → realidad)
+
+| Excusa | Realidad |
+|--------|----------|
+| "Lo hago en React/HTML así el usuario lo ve funcionando." | Eso es código. Esta fase valida orden y secuencia en texto, sin comprometer stack. |
+| "Falta una pantalla obvia, la agrego." | Si no tiene V-N en el diseño, va a `preguntas-wireframes.md`. El diseño es la fuente de qué pantallas existen. |
+| "Le pongo la paleta y la tipografía de una." | UI fina (colores, fuentes, px) no es de esta fase. Solo estructura y jerarquía. |
+| "Estos datos quedan mejor con valores reales." | Todo dato es `{mock}`. Inventar reglas de negocio detrás es otra altitud. |
+| "Insinúo el framework para ayudar a la fase siguiente." | Rompe la regla de oro. El stack vive solo en el ADR de `diseno-tecnico.md`. |
 
 ## Output check (definition of done)
 

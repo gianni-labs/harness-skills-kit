@@ -147,6 +147,18 @@ Modo verificación (ver Fase 0): solo completar huecos, nunca regenerar `INDICE.
 
 ---
 
+## Racionalizaciones (excusa → realidad)
+
+Excusas típicas con que un LLM se salta la disciplina de esta fase, y por qué no valen:
+
+| Excusa | Realidad |
+|--------|----------|
+| "Ya sé el stack, lo dejo anotado de paso." | El stack es de la fase 2 (diseño). Anotarlo en el arranque lo congela sin haberlo diseñado. Aquí solo va estructura. |
+| "El proyecto es chico, me salto el perfil." | El perfil decide qué fases corren (p. ej. si `wireframes` se omite). Sin él, las fases siguientes asumen mal. Se pregunta, no se infiere. |
+| "Hay un CLAUDE.md, lo reescribo limpio." | Contiene decisiones del usuario. Se **complementa** mostrando el delta, nunca se reemplaza. |
+| "Adelanto algo del requerimiento ya que estoy." | Las carpetas van vacías a propósito. Mezclar el arranque con la fase 1 borra el gate de refinamiento. |
+| "Creo el scaffolding del código de una vez." | Eso es F0 del plan de implementación. Esta fase no escribe código. |
+
 ## Output check (definition of done)
 
 - [ ] Las 6 carpetas de `documentacion/` + `mejoras/` (con su `INDICE.md`) existen.
