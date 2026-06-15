@@ -10,6 +10,7 @@
 
 Una cadena de *skills* para Claude Code donde **cada fase produce un artefacto con contrato fijo** que la siguiente consume. El modelo no rellena huecos con inventos: pregunta, documenta y construye sobre decisiones cerradas.
 
+[![Versión](https://img.shields.io/badge/versi%C3%B3n-0.2.0-4f46e5)](CHANGELOG.md)
 ![Metodología](https://img.shields.io/badge/metodolog%C3%ADa-Spec--Design-4f46e5)
 ![Skills](https://img.shields.io/badge/skills-8-0d9488)
 ![Claude Code](https://img.shields.io/badge/Claude_Code-plugin-f59e0b)
