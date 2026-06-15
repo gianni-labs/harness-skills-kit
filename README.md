@@ -47,12 +47,13 @@ No es un framework que ejecutas: es una **disciplina operativa** que vive en tus
 
 ## ✨ Qué lo hace distinto
 
-A diferencia de otras herramientas spec-driven, este harness aporta cuatro cosas que rara vez están juntas:
+A diferencia de otras herramientas spec-driven, este harness aporta cinco cosas que rara vez están juntas:
 
 - **🔀 Patrón preguntas → merge (asíncrono).** Cuando falta información, la skill no asume: genera un archivo `preguntas-*.md` con opciones `(a)(b)(c)` y un campo `R:`. Respondes a tu ritmo, y la skill integra (*merge*) tus respuestas al documento. Cero invención.
 - **♻️ Ciclo de vida post-MVP.** El harness no termina en el primer release. Un `BACKLOG.md` vivo + el skill `/mejora` iteran cada funcionalidad nueva con **rigor proporcional al impacto** (un toggle no paga la ceremonia de un MVP; un cambio de contrato no entra a código sin spec).
 - **✋ Gate humano formalizado.** La documentación nunca fluye a desarrollo autónomo sin tu OK explícito. Está codificado como una *parada de aprobación*, distinta de un menú de opciones.
 - **🧠 Memoria trazable.** Una bitácora con referencia cruzada (`B-007 → ADR-2 / RF-5 / tarea F2-T3`) registra el porqué de cada decisión, sobreviviendo entre sesiones.
+- **🛡️ Calidad sin perder la disciplina.** Cada skill trae una tabla **anti-racionalización** (excusa → realidad) que desarma los atajos típicos del modelo. Y la calidad transversal (seguridad, accesibilidad, performance, testing) vive como **referencias consultables** + **personas de revisión** (`revisor-codigo`, `auditor-seguridad`) que el gate invoca — opcionales, sin convertir el harness en un catálogo.
 
 <!--
 ══════════════════════════════════════════════════════════════════════════════
@@ -122,7 +123,7 @@ A diferencia de otras herramientas spec-driven, este harness aporta cuatro cosas
 
 El principio rector es la **separación por altitud**: cada decisión vive en una sola fase, y los cambios fluyen *top-down*. Una decisión cerrada nunca se reabre desde una fase posterior — se vuelve a la fase dueña. Así el código no erosiona el diseño, y el diseño no contamina el requerimiento.
 
-Cada skill comparte un esqueleto disciplinado: declara **qué consume** y **qué produce**, una sección explícita de **qué NO hace**, una lista de **anti-patrones**, y un **output check** (definition of done) que impide cerrar la fase si algo quedó a medias. Las convenciones compartidas (rutas, IDs, estados, el patrón de preguntas) viven en un único `CONVENCIONES.md`, no duplicadas en cada skill.
+Cada skill comparte un esqueleto disciplinado: declara **qué consume** y **qué produce**, una sección explícita de **qué NO hace**, una lista de **anti-patrones**, una tabla de **racionalizaciones** (excusa → realidad) y un **output check** (definition of done) que impide cerrar la fase si algo quedó a medias. Las convenciones compartidas (rutas, IDs, estados, el patrón de preguntas, las referencias de calidad y las personas de revisión) viven en un único `CONVENCIONES.md`, no duplicadas en cada skill.
 
 ---
 
@@ -230,6 +231,8 @@ El harness no llega a competir en cobertura de integraciones (Spec Kit soporta d
 skills/<nombre>/SKILL.md          ← las 8 skills instalables
 skills/_harness/CONVENCIONES.md   ← única fuente de lo compartido (rutas, IDs, estados, patrones)
 skills/_harness/templates/        ← plantillas (INDICE, BACKLOG, bitácora, seguimiento, CLAUDE…)
+skills/_harness/referencias/      ← checklists de calidad (seguridad, accesibilidad, performance, testing)
+skills/_harness/agentes/          ← personas de revisión (revisor-codigo, auditor-seguridad)
 docs/MANUAL.md                    ← manual del harness (el porqué de cada decisión)
 ```
 

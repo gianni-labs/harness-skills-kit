@@ -20,7 +20,7 @@ El harness es **genérico por diseño**: ninguna skill puede referenciar un domi
 - `skills/_harness/referencias/` — checklists de calidad desacopladas (seguridad, accesibilidad, performance, testing) que las fases **consultan bajo demanda**; recurso opcional condicionado por perfil (CONVENCIONES §12). No incrustar su contenido en los SKILL.md.
 - `skills/_harness/agentes/` — personas de revisión adversarial (`revisor-codigo`, `auditor-seguridad`) que `desarrollo` invoca como sub-agente en los gates; opcionales con fallback manual (CONVENCIONES §13).
 - `docs/MANUAL.md` — el *porqué* del harness. Cambios estructurales a una skill deben reflejarse ahí y en CONVENCIONES si tocan lo compartido.
-- `analisis/` — working docs del kit: `analisis-harness.md` (diagnóstico) y `plan-mejoras.md` (tracking de mejoras aplicadas al kit).
+- `analisis/` — working docs internos del kit (diagnósticos, planes de mejora, comparativas). **No versionado** (está en `.gitignore`): vive solo en local, no se publica.
 
 ## Invariantes al editar skills
 
