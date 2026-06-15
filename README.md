@@ -4,6 +4,8 @@
 
 # 🧭 Spec-Design Harness
 
+<img src="docs/assets/mascota.png" alt="Mascota: castor arquitecto" width="140">
+
 **Un harness de desarrollo asistido por IA: de la idea cruda a un MVP sólido —y a las mejoras que vienen después—, sin que el agente improvise.**
 
 Una cadena de *skills* para Claude Code donde **cada fase produce un artefacto con contrato fijo** que la siguiente consume. El modelo no rellena huecos con inventos: pregunta, documenta y construye sobre decisiones cerradas.
