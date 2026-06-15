@@ -1,20 +1,3 @@
-<!--
-══════════════════════════════════════════════════════════════════════════════
- IMAGEN 1 · HERO / BANNER  (ancho completo, arriba de todo)
- Ubicación sugerida: docs/assets/hero.png  → descomentar la línea ![] de abajo
- PROMPT (para Midjourney / DALL·E / Ideogram — en inglés, rinde mejor):
- "Wide hero banner for an AI-assisted software development methodology called
-  'Spec-Design'. Clean editorial tech illustration: a single elegant line that
-  starts as a loose hand-drawn scribble on the left (a raw idea) and gradually
-  transforms, left to right, into crisp geometric blueprint lines and finally
-  into neat stacked code blocks on the right. Limited palette: deep indigo,
-  teal, warm amber accents on an off-white paper background, subtle blueprint
-  grid texture, fine precise linework, soft long shadows. Minimal, premium,
-  modern developer-tool aesthetic. No text. 21:9 aspect ratio, high detail."
- Alternativa estilo dibujo: misma idea pero "soft hand-drawn ink-and-watercolor
- sketch, architectural notebook style".
-══════════════════════════════════════════════════════════════════════════════
--->
 <div align="center">
 
 <img src="docs/assets/hero.png" alt="Spec-Design Harness" width="100%">
@@ -55,59 +38,9 @@ A diferencia de otras herramientas spec-driven, este harness aporta cinco cosas 
 - **🧠 Memoria trazable.** Una bitácora con referencia cruzada (`B-007 → ADR-2 / RF-5 / tarea F2-T3`) registra el porqué de cada decisión, sobreviviendo entre sesiones.
 - **🛡️ Calidad sin perder la disciplina.** Cada skill trae una tabla **anti-racionalización** (excusa → realidad) que desarma los atajos típicos del modelo. Y la calidad transversal (seguridad, accesibilidad, performance, testing) vive como **referencias consultables** + **personas de revisión** (`revisor-codigo`, `auditor-seguridad`) que el gate invoca — opcionales, sin convertir el harness en un catálogo.
 
-<!--
-══════════════════════════════════════════════════════════════════════════════
- IMAGEN 2 · DIAGRAMA DEL PIPELINE  (el visual central — va aquí)
- Ubicación sugerida: docs/assets/pipeline.png
- PROMPT (en inglés):
- "Clean isometric technical illustration of a software pipeline drawn as an
-  assembly line of connected translucent glass panels, left to right, 8 stations.
-  Each station is a distinct labeled module representing a phase of work that
-  hands a document to the next. Style: editorial developer-tool aesthetic, thin
-  precise linework, limited palette of deep indigo + teal + warm amber on
-  off-white, subtle blueprint grid in the background, soft long shadows, gentle
-  depth. Leave clear empty space under each station for a caption. No readable
-  text inside the art. 16:9, premium, high detail."
- Alternativa dibujo: "hand-drawn architect's notebook diagram, ink lines with
-  light watercolor fills, arrows connecting labeled boxes".
-══════════════════════════════════════════════════════════════════════════════
--->
 ## 🌟 El pipeline
 
 <p align="center"><img src="docs/assets/pipeline.png" alt="El pipeline de fases" width="820"></p>
-
-```mermaid
-flowchart TD
-    idea([💡 idea cruda]) --> init([⚙️ iniciar-harness])
-    init --> f1
-
-    subgraph DOC ["📐 DOCUMENTACIÓN · altitud decreciente"]
-        direction TB
-        f1["1 · refinar-requerimiento — qué se quiere"]
-        f2["2 · documento-diseno — cómo, a alto nivel"]
-        f3["3 · wireframes (solo con UI) — layout y navegación"]
-        f4["4 · especificacion-tecnica — contratos exactos"]
-        f1 --> f2 --> f3 --> f4
-    end
-
-    subgraph BUILD ["🔨 CONSTRUCCIÓN"]
-        direction TB
-        f5["5 · plan-implementacion — Fases → Tareas + control"]
-        f6["6 · desarrollo — 💻 código"]
-        f5 --> f6
-    end
-
-    f4 --> f5
-    f6 --> bl[("BACKLOG.md · cola viva del producto")]
-    bl -.->|"/mejora · rigor adaptativo (tracks A/B/C/D)"| f2
-
-    classDef doc fill:#eef2ff,stroke:#4f46e5,color:#1e1b4b;
-    classDef build fill:#ecfeff,stroke:#0d9488,color:#134e4a;
-    classDef anchor fill:#fef3c7,stroke:#b45309,color:#7c2d12;
-    class f1,f2,f3,f4 doc;
-    class f5,f6 build;
-    class idea,init,bl anchor;
-```
 
 <sub>Cada flecha es un **handoff con contrato fijo**: lo que una fase produce es exactamente lo que la siguiente consume. La fase de wireframes se omite sola si el proyecto no tiene UI (CLI, API, librería). El ciclo post-MVP (línea punteada) reaplica solo las fases que el cambio necesita.</sub>
 
@@ -126,21 +59,6 @@ La cadena de contratos: cada fase **consume** el artefacto de la anterior y **pr
 | fase 6 | `desarrollo` | plan + contratos | código + seguimiento/bitácora |
 | post-MVP | `mejora` | `BACKLOG.md` | router adaptativo (tracks A/B/C/D) + gate humano |
 
-<!--
-══════════════════════════════════════════════════════════════════════════════
- IMAGEN 3 · SEPARACIÓN POR ALTITUDES  (junto a la sección "Cómo funciona")
- Ubicación sugerida: docs/assets/altitudes.png
- PROMPT (en inglés):
- "Conceptual illustration of 'separation by altitude' in software design: a
-  cross-section of layered horizontal strata, like a clean geological diagram or
-  a stack of floating translucent platforms at different heights. Top layer = a
-  light cloud / idea; descending layers become progressively more structured:
-  wireframe grids, then typed contracts, then an ordered task list, then solid
-  code at the bottom. A single thin vertical line connects all layers, showing
-  decisions flowing top-down only. Editorial tech style, indigo-teal-amber on
-  off-white, fine linework, soft shadows, no text. 4:3, premium, high detail."
-══════════════════════════════════════════════════════════════════════════════
--->
 ## 🧭 Cómo funciona
 
 <p align="center"><img src="docs/assets/altitudes.png" alt="Separación por altitudes" width="680"></p>
@@ -200,21 +118,6 @@ cp -R harness-skills-kit/skills/. tu-proyecto/.claude/skills/
 
 En cada fase de diseño, la skill te deja un archivo `preguntas-*.md`. Lo respondes, le avisas, y la skill integra tus respuestas antes de cerrar. Nada avanza sobre suposiciones.
 
-<!--
-══════════════════════════════════════════════════════════════════════════════
- IMAGEN 4 · CICLO POST-MVP / RIGOR ADAPTATIVO  (en la sección de mejoras)
- Ubicación sugerida: docs/assets/ciclo-mejoras.png
- PROMPT (en inglés):
- "Illustration of an adaptive improvement loop for software. Center: a circular
-  flow arrow returning a finished product (a small built cube) back into a
-  funnel. The funnel sorts incoming improvement requests into four lanes of
-  increasing rigor, labeled A B C D, each lane visibly longer and more detailed
-  than the previous (A = a single short step, D = a full multi-step pipeline).
-  A small human-hand 'approval gate' icon sits before the build stage. Editorial
-  tech style, indigo-teal-amber on off-white, thin linework, soft shadows, room
-  for captions, no readable text. 16:9, premium, high detail."
-══════════════════════════════════════════════════════════════════════════════
--->
 ## ♻️ Después del MVP: mejoras con rigor adaptativo
 
 <p align="center"><img src="docs/assets/ciclo-mejoras.png" alt="Ciclo de mejoras post-MVP" width="820"></p>
@@ -279,12 +182,3 @@ Las propuestas de mejora al harness se discuten en *issues*. Si usas el kit en u
 ## 📄 Licencia
 
 MIT — ver [`LICENSE`](LICENSE).
-
-<!--
-NOTA DE MANTENIMIENTO (no publicar / borrar antes de hacer público si se prefiere):
-- Idioma: el README está en español por coherencia con el kit (skills, comandos y
-  artefactos en español). Para alcance internacional, evaluar un README.en.md espejo.
-- Imágenes: 4 placeholders arriba (hero, pipeline, altitudes, ciclo-mejoras) con su
-  prompt. Generarlas, guardarlas en docs/assets/ y descomentar la línea ![] de cada una.
-  Mantener una sola paleta (indigo / teal / amber sobre off-white) en las 4 para coherencia.
--->
