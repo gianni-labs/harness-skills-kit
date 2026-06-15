@@ -4,7 +4,7 @@
 
 # 🧭 Spec-Design Harness
 
-**Un harness de desarrollo asistido por IA: de la idea cruda al código, sin que el agente improvise.**
+**Un harness de desarrollo asistido por IA: de la idea cruda a un MVP sólido —y a las mejoras que vienen después—, sin que el agente improvise.**
 
 Una cadena de *skills* para Claude Code donde **cada fase produce un artefacto con contrato fijo** que la siguiente consume. El modelo no rellena huecos con inventos: pregunta, documenta y construye sobre decisiones cerradas.
 
@@ -26,17 +26,42 @@ El **Spec-Design Harness** invierte eso. En lugar de saltar de la idea al códig
 
 No es un framework que ejecutas: es una **disciplina operativa** que vive en tus skills de Claude Code.
 
+> ### 🎯 Llega a un MVP, y sigue
+>
+> El objetivo de la primera pasada es claro: un **MVP funcional**, construido con disciplina y sin alcance inflado. Lo que queda fuera no se pierde — va al `BACKLOG`.
+>
+> Y ahí está la diferencia: **el harness no termina en el MVP.** Cada mejora posterior entra por el backlog y se construye con **rigor proporcional a su impacto** (un toggle no paga la ceremonia de un MVP; un cambio de contrato no entra sin spec), **reutilizando** lo ya documentado en vez de reescribirlo. El MVP es un hito, no el final.
+
 ---
 
 ## ✨ Qué lo hace distinto
 
 A diferencia de otras herramientas spec-driven, este harness aporta cinco cosas que rara vez están juntas:
 
-- **🔀 Patrón preguntas → merge (asíncrono).** Cuando falta información, la skill no asume: genera un archivo `preguntas-*.md` con opciones `(a)(b)(c)` y un campo `R:`. Respondes a tu ritmo, y la skill integra (*merge*) tus respuestas al documento. Cero invención.
-- **♻️ Ciclo de vida post-MVP.** El harness no termina en el primer release. Un `BACKLOG.md` vivo + el skill `/mejora` iteran cada funcionalidad nueva con **rigor proporcional al impacto** (un toggle no paga la ceremonia de un MVP; un cambio de contrato no entra a código sin spec).
-- **✋ Gate humano formalizado.** La documentación nunca fluye a desarrollo autónomo sin tu OK explícito. Está codificado como una *parada de aprobación*, distinta de un menú de opciones.
-- **🧠 Memoria trazable.** Una bitácora con referencia cruzada (`B-007 → ADR-2 / RF-5 / tarea F2-T3`) registra el porqué de cada decisión, sobreviviendo entre sesiones.
-- **🛡️ Calidad sin perder la disciplina.** Cada skill trae una tabla **anti-racionalización** (excusa → realidad) que desarma los atajos típicos del modelo. Y la calidad transversal (seguridad, accesibilidad, performance, testing) vive como **referencias consultables** + **personas de revisión** (`revisor-codigo`, `auditor-seguridad`) que el gate invoca — opcionales, sin convertir el harness en un catálogo.
+<br>
+
+**🔀 Patrón preguntas → merge (asíncrono).**
+Cuando falta información, la skill no asume: genera un archivo `preguntas-*.md` con opciones `(a)(b)(c)` y un campo `R:`. Respondes a tu ritmo, y la skill integra (*merge*) tus respuestas al documento. Cero invención.
+
+<br>
+
+**♻️ Ciclo de vida post-MVP.**
+El harness no termina en el primer release. Un `BACKLOG.md` vivo + el skill `/mejora` iteran cada funcionalidad nueva con **rigor proporcional al impacto** (un toggle no paga la ceremonia de un MVP; un cambio de contrato no entra a código sin spec).
+
+<br>
+
+**✋ Gate humano formalizado.**
+La documentación nunca fluye a desarrollo autónomo sin tu OK explícito. Está codificado como una *parada de aprobación*, distinta de un menú de opciones.
+
+<br>
+
+**🧠 Memoria trazable.**
+Una bitácora con referencia cruzada (`B-007 → ADR-2 / RF-5 / tarea F2-T3`) registra el porqué de cada decisión, sobreviviendo entre sesiones.
+
+<br>
+
+**🛡️ Calidad sin perder la disciplina.**
+Cada skill trae una tabla **anti-racionalización** (excusa → realidad) que desarma los atajos típicos del modelo. Y la calidad transversal (seguridad, accesibilidad, performance, testing) vive como **referencias consultables** + **personas de revisión** (`revisor-codigo`, `auditor-seguridad`) que el gate invoca — opcionales, sin convertir el harness en un catálogo.
 
 ## 🌟 El pipeline
 
