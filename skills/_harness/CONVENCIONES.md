@@ -171,8 +171,11 @@ El kit incluye checklists de calidad **desacopladas de las skills** en `${CLAUDE
 | `accesibilidad.md` | `wireframes`, `desarrollo` | solo perfil **con UI** |
 | `performance.md` | `documento-diseno` (RNF Performance), `desarrollo` | siempre; sección frontend solo con UI |
 | `testing.md` | `desarrollo` | siempre |
+| `pre-produccion.md` | `desarrollo` (cierre de release), `mejora` (cierre) | solo si el release/mejora va a producción |
 
 Son **recurso opcional**, como las herramientas del entorno: una fase las **referencia por ruta** cuando son relevantes; nunca las copia ni las da por obligatorias si no aplican al perfil.
+
+**Pendientes de producción:** los atajos diferidos que hay que cobrar antes de prod viven en la subsección **"Pendientes para producción"** de `BACKLOG.md` (no en un archivo aparte: el backlog es la única fuente del scope diferido, §mejora). Mismo ID `MEJ-nn`; columna `Bloquea release a prod = sí/no`. `pre-produccion.md` es el gate que los revisa.
 
 ## 13. Personas de revisión (recurso opcional)
 

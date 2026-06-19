@@ -111,9 +111,10 @@ Una vez que el usuario aprueba, handoff a **`desarrollo`**, que ejecuta el plan 
 
 Al terminar el build de la mejora:
 
-1. **`BACKLOG.md`:** subir la fila del ítem a ✅ y, si corresponde, el release asociado.
+1. **`BACKLOG.md`:** subir la fila del ítem a ✅ y, si corresponde, el release asociado. Si la mejora dejó algún atajo pendiente de prod, registrarlo en **"Pendientes para producción"** (no se pierde).
 2. **`INDICE.md`:** reflejar la mejora cerrada (entrada bajo `mejoras/`).
-3. **Resumen en el chat:**
+3. *(Si la mejora va a producción)* Consultar `_harness/referencias/pre-produccion.md` para cobrar los "Pendientes para producción" con `Bloquea = sí`. Opcional, no bloqueante.
+4. **Resumen en el chat:**
 ```
 ✅ Mejora <id> implementada (track <X>).
 - Carpeta: documentacion/mejoras/<id>-<slug>/

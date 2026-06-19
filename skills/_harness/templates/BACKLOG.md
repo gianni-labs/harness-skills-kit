@@ -18,7 +18,17 @@
 |----|-----------|--------|---------|------|
 | RF-N | Should/Could/Won't | ⬜ | — | por qué quedó fuera · →diseno.md |
 
+## Pendientes para producción
+
+> Atajos tomados para construir/probar que hay que resolver —o aceptar conscientemente— antes de exponer el sistema. Se cobran con `_harness/referencias/pre-produccion.md` al preparar el release a prod. Mismo ID `MEJ-nn`.
+
+| Ítem | Estado | Bloquea release a prod | Riesgo si no se resuelve | Ref (ADR/bitácora) |
+|------|--------|------------------------|--------------------------|--------------------|
+| MEJ-NN | ⬜ | sí/no | — | — |
+
 ## Deuda técnica y mejoras diferidas
+
+> Deuda que no condiciona el paso a producción (refactors, mejoras internas, simplificaciones).
 
 | Ítem | Estado | Disparador | Ref (ADR/bitácora) |
 |------|--------|------------|--------------------|

@@ -96,7 +96,7 @@ El pipeline lineal (§2) construye el **primer release** (MVP). Lo que queda fue
 
 ```
 PRIMER RELEASE:  idea → … → desarrollo → código
-                                   └─► BACKLOG.md (alcance diferido: Should/Could/Won't, deuda, insumos)
+                                   └─► BACKLOG.md (alcance diferido: Should/Could/Won't, deuda, pendientes de prod, insumos)
 
 ITERACIÓN:       BACKLOG.md → /mejora <id> → [clasificar impacto] → track A/B/C/D
                                   └─► (solo las fases necesarias, scoped, en mejoras/<id>-<slug>/)
@@ -141,7 +141,9 @@ ITERACIÓN:       BACKLOG.md → /mejora <id> → [clasificar impacto] → track
 
 El harness organiza el *flujo* (qué fase, en qué orden, con qué contratos); la *cobertura de calidad horizontal* (seguridad, accesibilidad, performance, testing) vive como **recursos opcionales** que las fases consultan, no como fases nuevas:
 
-- **Referencias** (`skills/_harness/referencias/`): checklists desacopladas que las fases cargan bajo demanda — `documento-diseno` para no olvidar dimensiones de RNF, `especificacion-tecnica` para el contrato de validación, `desarrollo` al construir y verificar, `wireframes` para no diseñar barreras de accesibilidad. Condicionadas por perfil (la de accesibilidad solo con UI). Detalle en `CONVENCIONES.md §12`.
+- **Referencias** (`skills/_harness/referencias/`): checklists desacopladas que las fases cargan bajo demanda — `documento-diseno` para no olvidar dimensiones de RNF, `especificacion-tecnica` para el contrato de validación, `desarrollo` al construir y verificar, `wireframes` para no diseñar barreras de accesibilidad, y `pre-produccion` para cobrar la deuda diferida antes de soltar a prod. Condicionadas por perfil (la de accesibilidad solo con UI; la de pre-producción solo si va a prod). Detalle en `CONVENCIONES.md §12`.
+
+  **Por qué un gate y no una skill.** La deuda operativa de prod (config por env var, datos de prueba, mocks) no es una *feature diferida*: es un atajo que hay que deshacer. Registrarla es una captura de una línea, no un ciclo con preguntas/merge/gate, así que **no amerita una skill**. Y mantenerla en el `BACKLOG.md` —no en un archivo paralelo— preserva la regla de "única fuente del scope diferido" que hace que `mejora` sepa siempre dónde mirar. La subsección "Pendientes para producción" le da identidad propia (columna `Bloquea prod = sí/no`) sin fragmentar la fuente; `pre-produccion.md` es el momento en que esos pendientes se cobran.
 - **Personas de revisión** (`skills/_harness/agentes/`): `revisor-codigo` (5 ejes) y `auditor-seguridad` (OWASP) que `desarrollo` invoca como sub-agente en los gates para una revisión adversarial con contexto fresco, en vez de auto-revisarse. Opcionales con fallback manual. Detalle en `CONVENCIONES.md §13`.
 - **Anti-racionalización:** además de "Qué NO hace" y "anti-patrones", cada skill de fase trae una tabla `Excusa → Realidad` que desarma los atajos típicos del modelo en *esa* fase (esqueleto en `CONVENCIONES.md §10`).
 

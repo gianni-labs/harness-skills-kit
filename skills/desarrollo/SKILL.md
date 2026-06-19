@@ -106,7 +106,8 @@ Al terminar **todas las fases** del plan (el release queda construido):
 2. **Actualizar `BACKLOG.md`:** subir el release a ✅ en la tabla de Releases. Si alguna funcionalidad del backlog se implementó en este release, marcarla ✅.
 3. **Actualizar `INDICE.md`:** reflejar que el release está construido (no dejar "no iniciado" cuando ya está hecho).
 4. Confirmar que el alcance diferido sigue visible en `BACKLOG.md` para el próximo ciclo (nada se "pierde" al cerrar el MVP).
-5. *(Opcional, si el proyecto tiene UI)* **Encuadre visual + `DESIGN.md`:** dejar claro que la UI del MVP es **base funcional, no identidad de marca** (decisión, no límite; ver `documentacion/CONVENCIONES.md` §7). Proponer generar `DESIGN.md` en la raíz (formato Google Stitch, leyendo el codebase) como punto de partida del **pulido visual en un track B** post-MVP. Si el usuario declina, el track B de `/mejora` lo generará cuando haga falta.
+5. *(Si el release va a producción)* Consultar `_harness/referencias/pre-produccion.md`: revisar que cada **"Pendiente para producción"** con `Bloquea = sí` esté resuelto o aceptado conscientemente. Recordatorio, no traba — el gate sigue siendo humano.
+6. *(Opcional, si el proyecto tiene UI)* **Encuadre visual + `DESIGN.md`:** dejar claro que la UI del MVP es **base funcional, no identidad de marca** (decisión, no límite; ver `documentacion/CONVENCIONES.md` §7). Proponer generar `DESIGN.md` en la raíz (formato Google Stitch, leyendo el codebase) como punto de partida del **pulido visual en un track B** post-MVP. Si el usuario declina, el track B de `/mejora` lo generará cuando haga falta.
 
 ---
 
@@ -115,7 +116,7 @@ Al terminar **todas las fases** del plan (el release queda construido):
 Durante el build pueden surgir ideas, mejoras o requerimientos que **no están en el plan actual**. No se implementan al vuelo ni se descartan en silencio:
 
 - Si es una **funcionalidad/requerimiento nuevo** → anotarlo en `BACKLOG.md` (y, si amerita, abrir el RF en `diseno.md` en la próxima pasada de diseño). No meterlo en el release en curso.
-- Si es **deuda técnica** detectada al construir → registrarla en `BACKLOG.md` (sección deuda técnica) con su disparador.
+- Si es **deuda técnica** detectada al construir → registrarla en `BACKLOG.md` con su disparador. Si es un atajo que hay que deshacer antes de prod (config por env var, datos de prueba, mock de un servicio externo…) va a **"Pendientes para producción"** con `Bloquea release a prod = sí/no`; si es deuda interna que no condiciona el paso a prod, a **"Deuda técnica y mejoras diferidas"**.
 - Si cambia un contrato/ADR → aplica la "Disciplina de contratos" (detenerse y avisar).
 
 Así el backlog queda como la **memoria de alcance** del producto, no solo lo que el diseño anticipó.
@@ -225,5 +226,6 @@ Esta fase es donde el modelo más tiende a tomar atajos, porque está "producien
 **Por release (todas las fases hechas):**
 - [ ] `BACKLOG.md` actualizado (release → ✅; alcance diferido sigue visible).
 - [ ] `INDICE.md` refleja el release construido.
+- [ ] *(Si va a prod)* "Pendientes para producción" con `Bloquea = sí` revisados vía `pre-produccion.md` (resueltos o aceptados).
 
 Si algún check falla, la tarea/fase no se da por cerrada.
