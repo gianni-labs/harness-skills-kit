@@ -21,7 +21,7 @@ Convierte los contratos de la especificación técnica en un **plan ejecutable, 
 
 - **`especificacion-tecnica.md`** — contratos exactos (tipos, JSON Schema, endpoints, estructura de módulos, contrato LLM, modelo de error). Es la fuente de verdad de *qué existe*.
 - **`diseno.md`** §Alcance MVP — RFs Must + **dependencias funcionales** (orden sugerido).
-- **`diseno-tecnico.md`** — ADRs `Aceptada` (stack, persistencia, etc.).
+- **`diseno-tecnico.md`** (o §técnica de `diseno.md` si no se separó) — ADRs `Aceptada` (stack, persistencia, etc.).
 - **`BACKLOG.md`** (solo en releases posteriores al MVP) — la cola viva del producto. En un release v2+, el **alcance del release sale de aquí** (ítems marcados para ese release), no del §Alcance MVP.
 
 > La spec y el diseño son fuente de verdad. Este skill **no reabre** contratos ni ADRs. Si algo necesario no está definido, **pregunta**, no inventa.
@@ -53,7 +53,7 @@ Convierte los contratos de la especificación técnica en un **plan ejecutable, 
 
 Confirmar **en un solo mensaje breve**:
 
-1. **Fuentes:** rutas de `especificacion-tecnica.md`, `diseno.md`, `diseno-tecnico.md`.
+1. **Fuentes:** rutas de `especificacion-tecnica.md`, `diseno.md`, `diseno-tecnico.md` (si existe; si no, ADRs/stack desde la §técnica de `diseno.md`).
 2. **Granularidad de tarea:** por defecto, **tarea atómica** = una unidad que se completa y verifica de una sentada (un módulo, un endpoint, una vista). Confirmar o ajustar.
 3. **Resumen** en 3–4 viñetas de qué se va a producir.
 
@@ -171,7 +171,7 @@ Resumen en el chat:
 Listo para: skill `desarrollo` (ejecuta el plan tarea por tarea).
 ```
 
-**Archivar** `preguntas-plan.md` (si se generó, ya integrado) en `05-desarrollo/_archivo/` — automático, según `documentacion/CONVENCIONES.md` §5.
+**Archivar** `preguntas-plan.md` (si se generó, ya integrado) en `05-desarrollo/_archivo/` — automático, según `documentacion/CONVENCIONES.md` §5. **Respaldo git** (si la política está activa): commit local acotado a `documentacion/`, según `documentacion/CONVENCIONES.md` §8.
 
 ---
 

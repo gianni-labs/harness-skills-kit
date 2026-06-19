@@ -55,7 +55,7 @@ Del documento de diseño cerrado (por defecto `diseno.md`):
 3. Espera respuestas del usuario en `preguntas-wireframes.md`.
 4. Integra las respuestas en `wireframes.md`.
 5. Actualiza el `INDICE.md` de la documentación.
-6. Cierra y deja listo el handoff a la fase de plan de implementación / código.
+6. Cierra y deja listo el handoff a `/especificacion-tecnica` (la fase que fija contratos exactos antes del plan).
 
 ## Qué este skill NO hace
 
@@ -205,10 +205,10 @@ Al terminar, generar un resumen en el chat:
 - Secuencias cubiertas: F-1, ..., F-M
 - Recordatorio: este artefacto NO define stack (decisión sigue en diseno-tecnico.md, ADR de framework).
 
-Listo para: plan de implementación / código.
+Listo para: `/especificacion-tecnica` (fija tipos, APIs, schemas y contratos antes del plan).
 ```
 
-**Archivar** `preguntas-wireframes.md` (integrado) en `03-wireframes/_archivo/` — automático, según `documentacion/CONVENCIONES.md` §5, sin preguntar. Actualizar `INDICE.md` con el estado de la fase 3.
+**Archivar** `preguntas-wireframes.md` (integrado) en `03-wireframes/_archivo/` — automático, según `documentacion/CONVENCIONES.md` §5, sin preguntar. Actualizar `INDICE.md` con el estado de la fase 3. **Respaldo git** (si la política está activa): commit local acotado a `documentacion/`, según `documentacion/CONVENCIONES.md` §8.
 
 ---
 

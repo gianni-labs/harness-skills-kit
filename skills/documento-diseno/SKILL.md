@@ -301,7 +301,7 @@ Listo para especificación técnica y plan:
 - ADRs pendientes que fases posteriores deben respetar como abiertas: ADR-N
 ```
 
-**Archivar** `preguntas-diseno.md` (integrado) en `02-diseno/_archivo/` — automático, según `documentacion/CONVENCIONES.md` §5, sin preguntar. Luego ofrecer continuar con `/wireframes` (o directamente `/especificacion-tecnica` si el proyecto no tiene UI).
+**Archivar** `preguntas-diseno.md` (integrado) en `02-diseno/_archivo/` — automático, según `documentacion/CONVENCIONES.md` §5, sin preguntar. **Respaldo git** (si la política está activa): commit local acotado a `documentacion/`, según `documentacion/CONVENCIONES.md` §8. Luego ofrecer continuar con `/wireframes` (o directamente `/especificacion-tecnica` si el proyecto no tiene UI).
 
 ---
 

@@ -65,7 +65,7 @@ Cierra el hueco entre "decisiones de arquitectura" (que ya están en `diseno-tec
 
 Confirmar **en un solo mensaje breve**:
 
-1. **Archivos fuente:** rutas de `diseno.md`, `diseno-tecnico.md`, `wireframes.md` (si aplica).
+1. **Archivos fuente:** rutas de `diseno.md`, `diseno-tecnico.md` (si existe; si no, ADRs/stack desde la §técnica de `diseno.md`), `wireframes.md` (si aplica).
 2. **Estilo de API/interfaz:** **derivar del ADR de framework/arquitectura**. Si el ADR no lo determina, proponer máximo 2 opciones coherentes con el stack y preguntar.
 3. **Lenguaje de los tipos:** el del stack decidido en el ADR. Si el ADR de stack está abierto, es bloqueante — volver al diseño, no asumir.
 4. **Resumen** en 3–4 viñetas de qué se va a producir.
@@ -171,7 +171,7 @@ Listo para el plan de implementación:
 - El plan secuencia tareas contra estos contratos (sin redefinirlos).
 ```
 
-**Archivar** `preguntas-especificacion.md` (si se generó, ya integrado) en `04-especificacion-tecnica/_archivo/` — automático, según `documentacion/CONVENCIONES.md` §5. Actualizar `INDICE.md` y ofrecer continuar con el plan de implementación.
+**Archivar** `preguntas-especificacion.md` (si se generó, ya integrado) en `04-especificacion-tecnica/_archivo/` — automático, según `documentacion/CONVENCIONES.md` §5. Actualizar `INDICE.md`. **Respaldo git** (si la política está activa): commit local acotado a `documentacion/`, según `documentacion/CONVENCIONES.md` §8. Ofrecer continuar con el plan de implementación.
 
 ---
 
