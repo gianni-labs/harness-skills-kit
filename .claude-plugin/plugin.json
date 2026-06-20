@@ -1,6 +1,6 @@
 {
   "name": "spec-design",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Harness de desarrollo asistido por IA (metodología Spec-Design): cadena de skills de la idea cruda al código, con contratos fijos entre fases. Pregunta en vez de inventar; ciclo post-MVP con rigor adaptativo.",
   "author": {
     "name": "Gianni Carvacho",
