@@ -16,7 +16,7 @@ El harness es **genérico por diseño**: ninguna skill puede referenciar un domi
 \* omisible si el proyecto no tiene UI. Más `mejora` (router post-MVP con tracks A/B/C/D sobre `BACKLOG.md`).
 
 - `skills/_harness/CONVENCIONES.md` — **única fuente de lo compartido**: rutas (convención fija `documentacion/01..05`), IDs, estados, patrón preguntas→merge, gate humano vs AskUserQuestion, esqueleto de skill, perfil, modo directo. Las skills referencian este doc y solo definen sus deltas.
-- `skills/_harness/templates/` — plantillas que las skills copian (INDICE, BACKLOG, bitácora, seguimiento, herramientas, CLAUDE/AGENTS del proyecto destino). No incrustar plantillas en los SKILL.md.
+- `skills/_harness/templates/` — plantillas que las skills copian (INDICE, BACKLOG, bitácora, seguimiento, herramientas, CLAUDE del proyecto destino). No incrustar plantillas en los SKILL.md.
 - `skills/_harness/referencias/` — checklists de calidad desacopladas (seguridad, accesibilidad, performance, testing) que las fases **consultan bajo demanda**; recurso opcional condicionado por perfil (CONVENCIONES §12). No incrustar su contenido en los SKILL.md.
 - `skills/_harness/agentes/` — personas de revisión adversarial (`revisor-codigo`, `auditor-seguridad`) que `desarrollo` invoca como sub-agente en los gates; opcionales con fallback manual (CONVENCIONES §13).
 - `docs/MANUAL.md` — el *porqué* del harness. Cambios estructurales a una skill deben reflejarse ahí y en CONVENCIONES si tocan lo compartido.
