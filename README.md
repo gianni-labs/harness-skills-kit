@@ -97,6 +97,16 @@ Cada skill comparte un esqueleto disciplinado: declara **qué consume** y **qué
 
 ---
 
+## 🧪 Validado en la práctica
+
+El harness se probó **end-to-end** sobre un proyecto real: de una idea en una frase a un **MVP funcional verificado**, en una sola corrida. La separación por fases evitó el sobre-diseño (una base de datos completa quedó correctamente diferida al backlog en vez de colarse al MVP), y la especificación técnica dio contratos suficientes para construir sin rediseñar a mitad de camino.
+
+<p align="center"><img src="docs/assets/caso-estudio-desktop.png" alt="MVP construido con el harness" width="720"></p>
+
+📖 **[Lee el caso de estudio completo →](docs/CASO-ESTUDIO.md)** — el recorrido fase por fase, con diagramas y capturas del MVP construido.
+
+---
+
 ## ⚡ Instalación
 
 ### Opción A — Como plugin *(recomendado)*
@@ -198,6 +208,7 @@ harness-skills-kit/
 │       ├── referencias/       #   checklists de calidad (seguridad, accesibilidad, performance, testing)
 │       └── agentes/           #   personas de revisión (revisor-codigo, auditor-seguridad)
 ├── docs/MANUAL.md             # el porqué del harness (principios, fases, ciclo de vida)
+├── docs/CASO-ESTUDIO.md       # prueba empírica end-to-end (idea → MVP) con capturas
 └── .claude-plugin/            # manifiesto para instalar como plugin de Claude Code
 ```
 

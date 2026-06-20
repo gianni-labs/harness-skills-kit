@@ -87,12 +87,26 @@ Al terminar todas las tareas de una fase:
 
 > Las herramientas nombradas aquí (`code-review`, `security-review`, `verify`, `run`) son **opcionales del entorno**: si alguna no está disponible, el fallback es lint/build/tests manuales y revisión propia del diff. El gate no se salta por falta de herramienta.
 
-1. **Review:** lanzar `code-review` (y `security-review` si la fase toca datos sensibles o superficie expuesta) — o revisar el diff manualmente si no están disponibles. La revisión cubre **cinco ejes**: correctitud (¿hace lo que la tarea dice?, ¿bordes y errores?), legibilidad, arquitectura (¿respeta patrones y contratos?), seguridad y performance. Para una revisión adversarial con contexto fresco, usar las **personas de revisión** `revisor-codigo` (y `auditor-seguridad` si aplica), disponibles como referencia en `${CLAUDE_PLUGIN_ROOT}/skills/_harness/agentes/`: si tu entorno las expone como sub-agentes invocables, úsalas así; si no, aplica esa misma grilla manualmente sobre el diff. La auto-revisión "se ve bien" no cuenta como gate.
+1. **Review:** lanzar `code-review` (y `security-review` si la fase toca datos sensibles o superficie expuesta) — o revisar el diff manualmente si no están disponibles. La revisión cubre **cinco ejes**: correctitud (¿hace lo que la tarea dice?, ¿bordes y errores?), legibilidad, arquitectura (¿respeta patrones y contratos?), seguridad y performance. Para una revisión adversarial con contexto fresco, usar las **personas de revisión** `revisor-codigo` (y `auditor-seguridad` si aplica): **el plugin las provee como sub-agentes invocables** (declaradas en `.claude-plugin/plugin.json`; las definiciones viven en `${CLAUDE_PLUGIN_ROOT}/skills/_harness/agentes/`). Invocarlas como sub-agente es el camino normal. Solo si el runtime no soporta sub-agentes (p. ej. otro agente fuera de Claude Code), aplicar esa misma grilla manualmente sobre el diff. La auto-revisión "se ve bien" no cuenta como gate.
 2. **Verify:** correr la app / pruebas relevantes con `verify` o `run` — o ejecutarlas manualmente.
 3. **Actualizar** `seguimiento.md` (fase → ✅, progreso global).
 4. **Bitácora:** resumen breve de la fase (qué quedó, qué aprendiste).
 5. **Herramientas (opcionales):** considerar si alguna herramienta del entorno (las del recuadro de arriba, u otras según el stack) ayuda en la **fase siguiente** y proponérsela al usuario, explicando para qué. El usuario decide; no se instala nada sin su OK.
 6. **Respaldo git (si la política del proyecto lo activó):** `git commit` **local** de la documentación actualizada, con mensaje estándar (ej. `harness: cierre fase X`). **Local, nunca `push` ni remoto.** Si la política es "no tocar git", omitir este paso.
+
+### Checklist de gate manual (fallback sin herramientas)
+
+Cuando `code-review`/`verify` no estén disponibles, el gate **no se relaja**: se ejecuta esta grilla y se deja constancia en `bitacora.md`. Los ítems entre paréntesis se aplican según el **perfil del proyecto** (`${CLAUDE_PLUGIN_ROOT}/skills/_harness/CONVENCIONES.md` §8):
+
+- [ ] `lint` en verde
+- [ ] `typecheck` en verde
+- [ ] tests relevantes pasan
+- [ ] `build` en verde
+- [ ] `audit` de dependencias (nivel moderate+) revisado
+- [ ] (UI) flujo en navegador: la vista responde a la acción esperada
+- [ ] (UI) responsive verificado en el breakpoint objetivo
+- [ ] (LLM/API) fallback y manejo de error probados (proveedor caído, falta de credencial, entrada inválida)
+- [ ] revisión propia del diff con la grilla de **5 ejes** (no "se ve bien")
 
 No avanzar a la siguiente fase sin cerrar el gate.
 
@@ -147,6 +161,8 @@ Anotar en `bitacora.md` lo notable (tipo `ISSUE`/`DECISIÓN`). No marcar la tare
 ---
 
 ## Dogfooding del harness (si aplica)
+
+> **Modo contribuidor/mantenedor del kit, opt-in.** Esto **no** es una promesa de auto-mejora automática para el usuario final: el harness existe para construir *tu* producto, no para pedirte que mejores el framework. El mecanismo solo se activa si el proyecto contiene `MEJORAS-HARNESS.md` (lo crea quien mantiene el kit, no `/iniciar-harness`). Si no existe, esta sección no aplica y no se menciona al usuario.
 
 Si el proyecto incluye un **log de mejoras del harness** (por convención, un `MEJORAS-HARNESS.md` en una carpeta meta como `harness/`), registra ahí las observaciones sobre **el harness mismo** (no sobre el proyecto): fricciones del flujo, mejoras a skills, curiosidades, bugs. Es una memoria **de distinta altitud** que la bitácora del proyecto:
 

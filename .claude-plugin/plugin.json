@@ -8,5 +8,9 @@
   },
   "homepage": "https://github.com/gianni-labs/harness-skills-kit",
   "license": "MIT",
-  "keywords": ["spec-driven", "spec-design", "workflow", "skills", "harness", "español"]
+  "keywords": ["spec-driven", "spec-design", "workflow", "skills", "harness", "español"],
+  "agents": [
+    "./skills/_harness/agentes/revisor-codigo.md",
+    "./skills/_harness/agentes/auditor-seguridad.md"
+  ]
 }

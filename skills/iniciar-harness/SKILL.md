@@ -53,7 +53,13 @@ Tres escenarios:
 
 ---
 
+**Modo directo** (`${CLAUDE_PLUGIN_ROOT}/skills/_harness/CONVENCIONES.md` §9): si la invocación trae `directo`, o el contexto inicial ya contiene **nombre + perfil + idea escrita + política git**, no detenerse en la Fase 1. En su lugar, **anunciar en un solo mensaje** los valores detectados y los defaults asumidos (p. ej. "perfil: UI sí / LLM no / API no — inferido de la idea"; "git: no, lo manejas tú — default"), y proceder a la Fase 2. El modo directo **no** salta la salvaguarda de Fase 0 de no pisar archivos existentes: si algo del usuario está en riesgo, igual se confirma.
+
+---
+
 ## Fase 1: Preguntas mínimas
+
+> Si se activó el **modo directo** (ver Fase 0), omitir esta fase: los valores ya se anunciaron como defaults asumidos y se continúa en la Fase 2.
 
 En un solo mensaje (o `AskUserQuestion` si el entorno lo soporta — esto sí es un fork de opciones):
 
@@ -129,7 +135,7 @@ No mover ni renombrar nada del usuario. Proponer: crear las carpetas de la conve
 Señalar el conflicto concreto y dejar que el usuario decida qué manda. No sobreescribir su contenido.
 
 **El usuario quiere arrancar directo con la idea ("aquí está mi doc, parte").**
-Inicializar primero (este skill es rápido), mover el doc a `01-requerimiento/` y encadenar el handoff a `/refinar-requerimiento` en el mismo mensaje.
+Aplicar el **modo directo** (ver Fase 0): si el contexto ya trae nombre/perfil/idea/git, anunciar los defaults asumidos sin la parada de Fase 1, inicializar (este skill es rápido), mover el doc a `01-requerimiento/` y encadenar el handoff a `/refinar-requerimiento` en el mismo mensaje.
 
 **Re-ejecución sobre un harness ya iniciado.**
 Modo verificación (ver Fase 0): solo completar huecos, nunca regenerar `INDICE.md`/`BACKLOG.md` existentes (contienen estado real del proyecto).
